@@ -14,31 +14,31 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class CompanyServiceImpl implements CompanyService {
+public class CompanyServiceImpl {
     
     @Autowired
     CompanyBean companyBean;
-    @Autowired 
+     
     Session session ;
     @Autowired 
     SessionFactory sessionFactory;
 
-    @Override
+    
     public void save() {
         
     }
 
-    @Override
+    
     public Company login() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    
     public Company retrieveOne() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    
     public List<Company> retrieveAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

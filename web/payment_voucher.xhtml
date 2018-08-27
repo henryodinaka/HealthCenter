@@ -4,20 +4,21 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html" 
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="resources/movieSite.css"/>
-        <title>User Register</title>
+        <title>Payment Voucher</title>
     </h:head>
     <h:body>
         <div id="header">
-            <ui:include src="header.xhtml"/>
+            <!--<ui:include src="header.xhtml"/>-->
         </div>
         <div id="wrapper-other"> 
             <div class="form-tag-div">
-                <p class="form-caption">Payment Voucher</p> 
+                <p class="form-caption"><h1>Payment Voucher</h1></p> 
                 <h:form class="animate" id="regForm">
 
                     <div class="form-tag"><br/>
@@ -28,46 +29,41 @@
                     <div class="form-tag"><br/>
                         <p:outputLabel class="form-label"  value="Last Name " for="lName" />  <br/> <br/>
                         <p:inputText id="lName" value="#{companyBean.fullName}" placeholder="Full Name" required="true" /> 
-                    </div>
+                    </div><br/>
                     
                     <div class="form-tag">
                         <p:outputLabel class="form-label"  value="Month paid" for="month" /> <br/> <br/>
-                        <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Date of birth" /> 
-                    </div>
+                        <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Month Paid for" /> 
+                    </div><br/>
                     
                     <div class="form-tag">
                         <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
                         <p:inputText id="pvn" value="#{companyBean.paymentVoucherNum}"  placeholder="Payment Voucher Number" required="true" />
-                    </div>
+                    </div><br/>
                     
                     <div class="form-tag">
                         <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
-                        <p:inputText id="purpose" value="#{companyBean.purposeOfPayment}"  placeholder="Home Address" required="true" />
-                    </div>
+                        <p:inputText id="purpose" value="#{companyBean.purposeOfPayment}"  placeholder="Purpose Of Payment" required="true" />
+                    </div><br/>
                     
                     <div class="form-tag">
                         <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
                         <p:inputText id="amount" value="#{companyBean.amount}" placeholder="Amount Paid" required="true" />
-                    </div>
+                    </div><br/>
                     
                     <div class="form-tag"> 
                         <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
                         <p:inputText id="bank" value="#{companyBean.bank}" placeholder ="Bank where the payment was made" required="true" />
-                    </div>
+                    </div><br/>
 
                     <div class="form-tag">
                         <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
                         <p:inputText id="amountInWord" value="#{companyBean.amountInWords}" required="true"  placeholder="Amount in words"/>
-                    </div>
-                    
-                    <div class="form-tag">
-                        <p:selectBooleanCheckbox id="qualification" value="#{companyBean.qualification}" required="true"/>
-                    </div>
-                    
+                    </div><br/>
                     <div class="form-tag">
                         <p:outputLabel class="form-label"  value="Title " for="title" />  <br/> <br/>
-                        <p:inputText id="tile" value="#{companyBean.title}" required="true"  placeholder="Officer controlling Expenditure"/>
-                    </div>
+                        <p:inputText id="title" value="#{companyBean.title}" required="true"  placeholder="Officer controlling Expenditure"/>
+                    </div><br/>
                     
                     
                     <div class="form-tag">
@@ -81,17 +77,24 @@
                     </div>
                     
                     <div class="form-tag"><br/> 
-                        <p:outputLabel  class="form-label" value="Confirm Password " for="gender" /> <br/> <br/>
+                        <p:outputLabel  class="form-label" value="Confirm Password " for="cPass" /> <br/> <br/>
                         <p:password id="cPass" value="#{companyBean.password2}" placeholder="Confirm Password" onkeypress="confrimPass()" required="true" /> 
-                    </div>
+                    </div><br/>
 
+                    
+                    <div class="form-tag">
+                        <p:selectBooleanCheckbox id="signature" value="#{companyBean.signature}" required="true"/> 
+                        <span>I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of #{companyBean.amountInWords} can be paid under the sub-head quoted </span>
+                        <p>Name : #{companyBean.fullName}</p>
+                        <p>Title : #{companyBean.title}</p>
+                    </div>
+                    
                     <p class="form-tag">
-                        <h:commandButton class="form-btn" value="Register" action="#{companyBean.save()}"/>
+                        <h:commandButton class="form-btn" value="Submit" action="#{companyBean.save()}"/>
                     </p>
                 </h:form>
             </div> 
-        </div> 
-        <ui:include src="footer.xhtml"/>
+        </div>  
     </h:body>
 </html>
 
