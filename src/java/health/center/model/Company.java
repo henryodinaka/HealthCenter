@@ -34,7 +34,10 @@ public class Company {
 
     @Column(nullable = false)
     private String fullName;
-    
+
+    @Column(nullable = false)
+    private String title;
+        
     @Column(nullable = false)
     private boolean signature;
     
@@ -71,11 +74,12 @@ public class Company {
     public Company() {
     }
 
-    public Company(String username, String password, String companyName, String fullName, boolean signature, String purposeOfPayment, String paymentVoucherNum, String amountInWords, double amount, String bank, String receipt, Date month, Date dateOfPayment) {
+    public Company(String username, String password, String companyName, String fullName,String title, boolean signature, String purposeOfPayment, String paymentVoucherNum, String amountInWords, double amount, String bank, String receipt, Date month, Date dateOfPayment) {
         this.username = username;
         this.password = password;
         this.companyName = companyName;
         this.fullName = fullName;
+        this.title = title;
         this.signature = signature;
         this.purposeOfPayment = purposeOfPayment;
         this.paymentVoucherNum = paymentVoucherNum;
@@ -125,6 +129,14 @@ public class Company {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public boolean isSignature() {

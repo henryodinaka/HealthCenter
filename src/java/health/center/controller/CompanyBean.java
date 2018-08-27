@@ -16,6 +16,8 @@ public class CompanyBean {
 
     private String username;
     private String password;
+    private String password2;
+    private String title;
     private String companyName;
     private String fullName;
     private boolean signature;
@@ -33,7 +35,15 @@ public class CompanyBean {
     
     public CompanyBean() {
     }
-
+    
+    public String confirmDetails(){
+        
+        return "confirmationPage?faces-redirect=true";
+    }
+    
+    public String save(){
+        return "index?faces-redirect=true";
+    }
     public String getUsername() {
         return username;
     }
@@ -136,6 +146,22 @@ public class CompanyBean {
 
     public void setDateOfPayment(Date dateOfPayment) {
         this.dateOfPayment = dateOfPayment;
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
     
 }
