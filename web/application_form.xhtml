@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Application Form</title>
+    </h:head>
+    <h:body>
+        <h:form enctype="multipart/form-data" >
+            <div><br/>
+                <p:outputLabel value="First Name " for="fName" /> <br/> <br/>
+                <p:inputText a:autofocus="true" id="fName" value="#{userBean.firstName}" a:placeholder="First name" required="true" /> 
+            </div>
+
+            <div><br/>
+                <p:outputLabel    value="Last Name " for="lName" />  <br/> <br/>
+                <p:inputText id="lName" value="#{userBean.lastName}" a:placeholder="Last name" required="true" /> 
+            </div>
+            <div >
+                <p:outputLabel value="Phone Number " for="phone" /> <br/> <br/>
+                <p:inputText id="phone" value="#{userBean.phoneNumber}" a:placeholder="Phone Number"  required="true" /> 
+            </div>
+
+            <div >
+                <p:outputLabel value="Email: " for="email" /> <br/> <br/>
+                <p:inputText id="email" value="#{userBean.email}" a:placeholder="Valid Email" required="true" />  
+            </div>
+            <div><br/>
+                <p:outputLabel value="Cover Letter " for="cvLetter" />  <br/> <br/>
+                <p:inputTextarea id="cvLetter" value="#{userBean.coverLetter}" a:placeholder="Type Your Cover Letter Here"  required="true" /> 
+            </div>
+
+            <div >
+                <p:outputLabel value="Upload passport" for="passport" />  <br/> <br/>
+                <p:growl id="passportMsg" showDetail="true" />
+
+                <p:ajax event="keyup" update="outPassport" listener="#{userBean.passportPath()}">  
+                <p:fileUpload id="passport" value="#{userBean.passport}" mode="simple"/>
+                </p:ajax>
+                <p:panel id="outPassport"/>
+
+            </div><br/>
+            <div>
+                <p:outputLabel value="Upload resume" for="resume" />  <br/> <br/>
+                <p:growl id="resumeMsg" showDetail="true" />
+
+                <p:ajax event="keyup" update="outResume" listener="#{userBean.resume()}">  
+                <p:fileUpload id="resume" value="#{userBean.resume}"  mode="simple" />
+                </p:ajax>
+                
+                <p:panel id="outResume"/>
+
+
+            </div><br/>
+
+            <p>
+                <h:commandButton value="Register" action="#{userBean.save()}"/>
+            </p>
+        </h:form>
+    </h:body>
+</html>
+
