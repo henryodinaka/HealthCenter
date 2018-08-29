@@ -15,44 +15,10 @@
 
 
     </h:head>
-    <h:body>
-        <div id="header">
-
-            <div id="navbar">
-                <h:form>
-                    <span class="nav-link active" ><h:commandLink  value="Home" action="index?faces-redirect=true"/></span>
-                    <span class="nav-link" ><h:commandLink value="Payment Voucher" action="payment_voucher?faces-redirect=true"/></span>
-                    <span class="nav-link" ><h:commandLink value="Genres" action="message?faces-redirect=true"/></span> 
-                    <span class="nav-link nv-right" ><h:commandLink value="Login" action="login?faces-redirect=true"/></span>
-                </h:form>
-            </div> 
-        </div>
+    <h:body> 
         <div id="container" class="col-12">
             <div id="main-container">
                 <h:form>
-                    <p:panel id="panel" header="User Registration Form">
-                        <div class="row">
-                            <div class="col-12"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <p><h:outputText value="#{companyBean.accountInfo}"/></p>
-                            </div>
-                            <div class="col-3">
-                                <p><h:outputText value="#{companyBean.paymentInfo}"/></p>
-                            </div> 
-                            <div class="col-3">
-                                <p><h:outputText value="#{companyBean.confirmInfo}"/></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-9">
-                                <p><h:outputText value="#{userBean.currentForm}"/></p>
-                            </div>
-                            <div class="col-2">
-                                <p><h:outputText value="#{userBean.currentStage}"/></p>
-                            </div>
-                        </div>
                         <ui:composition template="payment_voucher.xhtml">
                             <ui:define name="body">
                         <div id="form-container" class="row">

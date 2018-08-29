@@ -32,10 +32,7 @@ public class CompanyBean {
     private String bank;
     private String receipt;
     private Date month;
-    private Date dateOfPayment;
-//    private String accountInfo="New Account Creation";
-//    private String paymentInfo ="New Payment";
-//    private String confirmInfo ="Details Confirmation";
+    private Date dateOfPayment; 
     private String currentForm = "New Payment";
     private int currentStage = 1;
     private int pageCounter = 1;

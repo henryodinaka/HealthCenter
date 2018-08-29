@@ -15,131 +15,81 @@
 
 
     </h:head>
-    <h:body>
-        <div id="header">
-
-            <div id="navbar">
-                <h:form>
-                    <span class="nav-link active" ><h:commandLink  value="Home" action="index?faces-redirect=true"/></span>
-                    <span class="nav-link" ><h:commandLink value="Payment Voucher" action="payment_voucher?faces-redirect=true"/></span>
-                    <span class="nav-link" ><h:commandLink value="Genres" action="message?faces-redirect=true"/></span> 
-                    <span class="nav-link nv-right" ><h:commandLink value="Login" action="login?faces-redirect=true"/></span>
-                </h:form>
-            </div> 
-        </div>
+    <h:body> 
         <div id="container" class="col-12">
             <div id="main-container">
-                <h:form>
-                    <p:panel id="panel" header="User Registration Form">
-                        <div class="row">
-                            <div class="col-12"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <p><h:outputText value="#{companyBean.accountInfo}"/></p>
-                            </div>
-                            <div class="col-3">
-                                <p><h:outputText value="#{companyBean.paymentInfo}"/></p>
-                            </div> 
-                            <div class="col-3">
-                                <p><h:outputText value="#{companyBean.confirmInfo}"/></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-9">
-                                <p><h:outputText value="#{userBean.currentForm}"/></p>
-                            </div>
-                            <div class="col-2">
-                                <p><h:outputText value="#{userBean.currentStage}"/></p>
-                            </div>
-                        </div>
-                        <ui:composition template="payment_voucher.xhtml">
-                            <ui:define name="body">
-                        <div id="form-container" class="row">
+                <h:form enctype="multipart/form-data">
+                    <ui:composition template="payment_voucher.xhtml">
+                        <ui:define name="body">
+                            <div id="form-container" class="row">
 
-                            <div id="form-content" class="col-9">
+                                <div id="form-content" class="col-9">
 
-                                <div class="row">
+                                    <div class="row">
 
-                                    <div class="form-tag col-7">
-                                        <p:outputLabel class="form-label"  value="Month" for="month" /> <br/> <br/>
-                                        <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Month Paid for" />
-                                        <!--                        <p:calendar  id="month" value="{companyBean.month}" required="true"  placeholder="Month Paid for" />
-                                                                                <p:outputLabel class="form-label" value="Salutation " for="title" /> <br/> <br/>
-                                                                                <p:selectOneMenu class="col-9" value="{userBean.title}" id="title" required="true" requiredMessage="How do we Address YOu?" >
-                                                                                    <f:selectItem itemValue="" itemLabel="Title"/>
-                                                                                    <f:selectItem itemValue="Mr" itemLabel="Mr"/>
-                                                                                    <f:selectItem itemValue="Mrs" itemLabel="Mrs"/> 
-                                                                                    <f:selectItem itemValue="Hon" itemLabel="Hon"/>
-                                                                                    <f:selectItem itemValue="Chief" itemLabel="Chief"/>
-                                                                                    <f:selectItem itemValue="Miss" itemLabel="Miss"/>
-                                        
-                                                                                </p:selectOneMenu> -->
+                                        <div class="form-tag col-7">
+                                            <p:outputLabel class="form-label"  value="Month" for="month" /> <br/> <br/>
+                                            <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Month Paid for" /> 
+                                        </div>
+
+                                        <div class="form-tag col-4">
+                                            <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
+                                            <p:inputText id="pvn" value="#{companyBean.paymentVoucherNum}"  placeholder="Payment Voucher Number" required="true" />  
+                                        </div>
                                     </div>
 
-                                    <div class="form-tag col-4">
-                                        <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
-                                        <p:inputText id="pvn" value="#{companyBean.paymentVoucherNum}"  placeholder="Payment Voucher Number" required="true" /> 
-                                        <!--                                        <p:outputLabel class="form-label" value="Gender " for="gender" /> <br/> <br/>
-                                                                                <p:selectOneMenu class="col-10" value="{userBean.gender}" id="gender" required="true" requiredMessage="You Must select the gender">
-                                                                                    <f:selectItem itemValue="" itemLabel="Gender"/>
-                                                                                    <f:selectItem itemValue="M" itemLabel="Male"/>
-                                                                                    <f:selectItem itemValue="F" itemLabel="Female"/> 
-                                                                                </p:selectOneMenu> -->
+                                    <div class="row">
+
+                                        <div class="form-tag col-5" ><br/>
+                                            <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
+                                            <p:inputText id="purpose" value="#{companyBean.purposeOfPayment}"  placeholder="Purpose Of Payment" required="true" />
+                                        </div>
+
+                                        <div class="form-tag col-6"><br/>
+                                            <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
+                                            <p:inputText id="amount" value="#{companyBean.amount}" placeholder="Amount Paid" required="true" />
+                                        </div>
                                     </div>
+
+                                    <div class="row">
+
+                                        <div class="form-tag col-5">
+                                            <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
+                                            <p:inputText id="bank" value="#{companyBean.bank}" placeholder ="Bank where the payment was made" required="true" />
+                                        </div>
+
+                                        <div class="form-tag col-6">
+                                            <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
+                                            <p:inputText id="amountInWord" value="#{companyBean.amountInWords}" required="true"  placeholder="Amount in words"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-tag col-12">
+                                            <p:selectBooleanCheckbox id="signature" value="#{companyBean.signature}" required="true"/> 
+                                            <span>I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of #{companyBean.amountInWords} can be paid under the sub-head quoted </span> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-tag col-11">
+                                            <p:outputLabel class="form-label"  value="Full Name " for="fName" />  <br/> <br/>
+                                            <p:inputText id="fName" value="#{companyBean.fullName}" placeholder="Full Name" required="true" /> 
+                                        </div>
+
+                                        <div class="form-tag col-11">
+                                            <p:outputLabel class="form-label"  value="Title " for="title" />  <br/> <br/>
+                                            <p:inputText id="title" value="#{companyBean.title}" required="true"  placeholder="Officer controlling Expenditure"/>
+                                        </div>
+                                    </div> 
                                 </div>
-
-                                <div class="row">
-
-                                    <div class="form-tag col-5" ><br/>
-                                        <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
-                                        <p:inputText id="purpose" value="#{companyBean.purposeOfPayment}"  placeholder="Purpose Of Payment" required="true" />
-                                    </div>
-
-                                    <div class="form-tag col-6"><br/>
-                                        <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
-                                        <p:inputText id="amount" value="#{companyBean.amount}" placeholder="Amount Paid" required="true" />
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="form-tag col-5">
-                                        <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
-                                        <p:inputText id="bank" value="#{companyBean.bank}" placeholder ="Bank where the payment was made" required="true" />
-                                    </div>
-
-                                    <div class="form-tag col-6">
-                                        <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
-                                        <p:inputText id="amountInWord" value="#{companyBean.amountInWords}" required="true"  placeholder="Amount in words"/>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-tag col-12">
-                                        <p:selectBooleanCheckbox id="signature" value="#{companyBean.signature}" required="true"/> 
-                                        <span>I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of #{companyBean.amountInWords} can be paid under the sub-head quoted </span> 
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="form-tag col-11">
-                                        <p:outputLabel class="form-label"  value="Full Name " for="fName" />  <br/> <br/>
-                                        <p:inputText id="fName" value="#{companyBean.fullName}" placeholder="Full Name" required="true" /> 
-                                    </div>
-
-                                    <div class="form-tag col-11">
-                                        <p:outputLabel class="form-label"  value="Title " for="title" />  <br/> <br/>
-                                        <p:inputText id="title" value="#{companyBean.title}" required="true"  placeholder="Officer controlling Expenditure"/>
-                                    </div>
-                                </div> 
                             </div>
-                        </div>
-                            </ui:define>
+                        </ui:define>
                         <ui:define name="nextButton">
+                            <span id="btn-next"  ><p:fileUpload value="#{companyBean.payReceipt}" value="Upload Receipt"/></span>
                             <span id="btn-next"  ><p:commandButton action="#{companyBean.confirmDetails()}" value="Confirm Details"/></span>
                         </ui:define>
-                        </ui:composition>
+                    </ui:composition>
                 </h:form>
             </div>
         </div>
