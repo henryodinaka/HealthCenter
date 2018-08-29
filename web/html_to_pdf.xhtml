@@ -5,113 +5,119 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Print Page</title>
+        <link rel="stylesheet" href="resources/health-center.css"/>
     </h:head>
     <h:body>
         <ui:composition template="base_template.xhtml">
             <ui:define name="body">
-                <div class="row">
-                    <h1>GOVERNMENT OF RIVERS STATE OF NIGERIA </h1>
-                    <h3>(RIVERS STATE PRIMARY HEALTH CARE MANAGEMENT BOARD</h3>
-                </div>
-                <div class="row">
-                    <div class="col-5">
-                        <h1>PAYMENT VOUCHER</h1>
-                        <h3>Other Charges</h3>
+                <div class="main-container" style="background-color: cyan;margin: auto; width: 80%;">
+                    <div class="container" style="background-color: whitesmoke;width: 90%;margin: auto;">
+                        <div class="row">
+                            <h1>GOVERNMENT OF RIVERS STATE OF NIGERIA </h1>
+                            <h3>(RIVERS STATE PRIMARY HEALTH CARE MANAGEMENT BOARD</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <h1>PAYMENT VOUCHER</h1>
+                                <h3>Other Charges</h3>
+
+                            </div>
+                            <div class="col-5">
+                                <table border="1" width="100%">
+                                    <thead>
+                                        <th>Station</th>
+                                        <th>Month</th>
+                                        <th>P.V.No</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Seen</td>
+                                            <td>Seen</td>
+                                            <td>Seen</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Head:..........................................................................................................................</p>
+                            <p>Dr to...........................................................................................................................</p>
+                            <p>GPPH 3/1/2005/4,000-q</p>
+                        </div>
+                        <div class="row table">
+                            <div class="col-10">
+                                <table border="1" width="100%">
+                                    <thead>
+                                        <th>Date</th>
+                                        <th>Detailed Description Of Service or Article</th>
+                                        <th>Rate</th>
+                                        <th>Amount</th>
+                                    </thead>
+                                    <tbody>
+                                        <td>
+                                            <h:outputText value="#{companyBean.dateOfPayment}"/>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{companyBean.purposeOfPayment}"/>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{companyBean.amount}"/>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{companyBean.amount}"/>
+                                        </td>
+                                    </tbody>
+                                    <tfoot>
+                                        <td>
+                                            Financial Authority <h:outputText value="#{companyBean.bank}"/>
+                                        </td>
+                                        <td>
+                                            Total <h:outputText value="#{companyBean.amount}"/> 
+                                        </td>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <p>
+                                    I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of <h:outputText value="#{companyBean.amountInWords}"/> can be paid under the sub-head quoted 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                Place..........................20......
+                            </div>
+                            <div class="col-5">
+                                Signature....<h:outputText value="#{companyBean.signature}"/>
+                                <p>
+                                    Name(Typed).....<h:outputText value="#{companyBean.fullName}"/>
+                                </p>
+                                <p>
+                                    Title.....<h:outputText value="#{companyBean.fullName}"/><br/>
+                                    <span>
+                                        <i>Officer Controlling Experience</i>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <p>
+                            RECEIVED this ..............day of .........20.......in payment of the above, the sum of .................
+                        </p>
+                        <div class="row">
+                            <div class="col-5">
+                                <p>Witness to mark ........................................................</p>
+                            </div>
+                            <div class="col-5">
+                                <p>.......................................................................</p>
+                                <p><i>Signature Of the Receiver</i></p>
+                            </div>
+                        </div>
+                        <p>*The certificate must be made to apply to the circumstances of the payment</p>
 
                     </div>
-                    <div class="col-5">
-                        <table border="1" width="100%">
-                            <thead>
-                                <th>Station</th>
-                                <th>Month</th>
-                                <th>P.V.No</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Seen</td>
-                                    <td>Seen</td>
-                                    <td>Seen</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
-                <div>
-                    <p>Head:.....................................................................</p>
-                    <p>Dr to.....................................................................</p>
-                    <p>GPPH 3/1/2005/4,000-q</p>
-                </div>
-                <div class="row table">
-                    <div class="col-10">
-                        <table border="1" width="100%">
-                            <thead>
-                                <th>Date</th>
-                                <th>Detailed Description Of Service or Article</th>
-                                <th>Rate</th>
-                                <th>Amount</th>
-                            </thead>
-                            <tbody>
-                                <td>
-                                    <h:outputText value="#{companyBean.dateOfPayment}"/>
-                                </td>
-                                <td>
-                                    <h:outputText value="#{companyBean.purposeOfPayment}"/>
-                                </td>
-                                <td>
-                                    <h:outputText value="#{companyBean.amount}"/>
-                                </td>
-                                <td>
-                                    <h:outputText value="#{companyBean.amount}"/>
-                                </td>
-                            </tbody>
-                            <tfoot>
-                                <td>
-                                    Financial Authority <h:outputText value="#{companyBean.bank}"/>
-                                </td>
-                                <td>
-                                    Total <h:outputText value="#{companyBean.amount}"/> 
-                                </td>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-10">
-                        <p>
-                            I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of <h:outputText value="#{companyBean.amountInWords}"/> can be paid under the sub-head quoted 
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-5">
-                        Place..........................20......
-                    </div>
-                    <div class="col-5">
-                        Signature....<h:outputText value="#{companyBean.signature}"/>
-                        <p>
-                            Name(Typed).....<h:outputText value="#{companyBean.fullName}"/>
-                        </p>
-                        <p>
-                            Title.....<h:outputText value="#{companyBean.fullName}"/><br/>
-                             <span>
-                                <i>Officer Controlling Experience</i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <p>
-                    RECEIVED this ..............day of .........20.......in payment of the above, the sum of .................
-                </p>
-                <div class="row">
-                    <div class="col-5">
-                        <p>Witness to mark ........................................................</p>
-                    </div>
-                    <div class="col-5">
-                        <p>.......................................................................</p>
-                        <p><i>Signature Of the Receiver</i></p>
-                    </div>
-                </div>
-                <p>*The certificate must be made to apply to the circumstances of the payment</p>
             </ui:define>
         </ui:composition>
     </h:body>
