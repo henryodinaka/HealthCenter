@@ -1,6 +1,7 @@
 package health.center.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,8 +44,10 @@ public class Company {
     @Column(nullable = false)
     private String email;
     
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Payment.class, mappedBy = "companyId")
-    private Payment payments ;
+    @OneToMany(fetch = FetchType.LAZY, 
+            targetEntity = Payment.class,
+            mappedBy = "companyId")
+    private List<Payment> payments ;
 
     @CreationTimestamp
     private Date created;
@@ -55,7 +58,7 @@ public class Company {
     public Company() {
     }
 
-    public Company(String username, String password, String companyName, String fullName, String phoneNumber, String email, Payment payments, Date created, Date modified) {
+    public Company(String username, String password, String companyName, String fullName, String phoneNumber, String email, List<Payment> payments, Date created, Date modified) {
         this.username = username;
         this.password = password;
         this.companyName = companyName;
@@ -83,11 +86,11 @@ public class Company {
         this.email = email;
     }
 
-    public Payment getPayments() {
+    public List<Payment> getPayments() {
         return payments;
     }
 
-    public void setPayments(Payment payments) {
+    public void setPayments(List<Payment> payments) {
         this.payments = payments;
     }
 
