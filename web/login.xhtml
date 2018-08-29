@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="resources/movieSite.css"/>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <div id="header">
+
+            <div id="navbar">
+                <h:form id="login-form">
+                    <span class="nav-link " title="Home"><h:commandLink action="index?faces-redirect=true" value="Home"/></span>
+                    <span class="nav-link " ><h:commandLink class="active" value="About" action="about?faces-redirect=true"/></span>
+                    <span class="nav-link" ><p:inputText value="#{companyBean.username}" placeholder="Username" /></span> 
+
+                    <span class="nav-link" ><p:password  value="#{companyBean.password}" placeholder="Password"/></span> 
+                    <span class="nav-link">
+                        <h:commandButton class="dropbtn" action="#{companyBean.login()}" value="Login"/>
+                    </span> 
+                </h:form>
+            </div> 
+        </div>
+        <div id="wrapper-other"> 
+            <div class="form-tag-div">
+                <p class="form-caption"><h1>Create Account for your Company</h1></p> 
+                <h:form id="regForm" enctype="multipart/form-data">
+
+                    <div class="form-tag">
+                        <p:outputLabel class="form-label"  value="Head " for="head" /> <br/> <br/>
+                        <p:inputText a:autofocus="true" id="head" value="#{companyBean.companyName}" placeholder="Your Company name" required="true" /> 
+                    </div>
+                    <br/>  
+
+                    <div class="form-tag">
+                        <p:outputLabel class="form-label"  value="Phone Number" for="phone" />  <br/> <br/>
+                        <p:inputText id="phone" value="#{companyBean.phone}" required="true"  placeholder="Phone Number"/>
+                    </div><br/>
+                    <div class="form-tag">
+                        <p:outputLabel class="form-label"  value="Company's Email " for="email" />  <br/> <br/>
+                        <p:inputText id="email" value="#{companyBean.email}" required="true"  placeholder="Provide a valid Email"/>
+                    </div><br/>
+
+
+                    <div class="form-tag">
+                        <p:outputLabel  class="form-label" value="Username " for="uName" /> <br/> <br/> 
+                        <p:inputText id="uName" value="#{companyBean.username}" placeholder="Username"  onchange="userNameVale()"  required="true" /> 
+                    </div>
+
+                    <div class="form-tag"><br/> 
+                        <p:outputLabel class="form-label"  value="Password " for="pass" /> <br/> <br/>
+                        <p:password id="pass"  value="#{companyBean.password}" placeholder="Password" onchange="passwordVal()" required="true" /> 
+                    </div>
+
+                    <div class="form-tag"><br/> 
+                        <p:outputLabel  class="form-label" value="Confirm Password " for="cPass" /> <br/> <br/>
+                        <p:password id="cPass" value="#{companyBean.password2}" placeholder="Confirm Password" onkeypress="confrimPass()" required="true" /> 
+                    </div><br/>
+
+
+                    <p class="form-tag">
+                        <h:commandButton class="form-btn" value="Submit" action="#{companyBean.saveNewAccount()}"/>
+                    </p>
+                </h:form>
+            </div> 
+        </div>  
+    </h:body>
+</html>
+
+
+

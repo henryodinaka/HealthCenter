@@ -3,9 +3,11 @@ package health.center.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -36,34 +38,13 @@ public class Company {
     private String fullName;
 
     @Column(nullable = false)
-    private String title;
-        
+    private String phoneNumber;
+
     @Column(nullable = false)
-    private boolean signature;
+    private String email;
     
-    @Column(nullable = false)
-    private String purposeOfPayment;
-
-    @Column(nullable = false)
-    private String paymentVoucherNum;
-
-    @Column(nullable = false)
-    private String amountInWords;
-
-    @Column(nullable = false)
-    private double amount;
-
-    @Column(nullable = false)
-    private String bank;
-    
-    @Column(nullable = false)
-    private String receipt;
-    
-    @Column(nullable = false)
-    private Date month;
-
-    @Column(nullable = false)
-    private Date dateOfPayment;
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Payment.class, mappedBy = "companyId")
+    private Payment payments ;
 
     @CreationTimestamp
     private Date created;
@@ -74,22 +55,43 @@ public class Company {
     public Company() {
     }
 
-    public Company(String username, String password, String companyName, String fullName,String title, boolean signature, String purposeOfPayment, String paymentVoucherNum, String amountInWords, double amount, String bank, String receipt, Date month, Date dateOfPayment) {
+    public Company(String username, String password, String companyName, String fullName, String phoneNumber, String email, Payment payments, Date created, Date modified) {
         this.username = username;
         this.password = password;
         this.companyName = companyName;
         this.fullName = fullName;
-        this.title = title;
-        this.signature = signature;
-        this.purposeOfPayment = purposeOfPayment;
-        this.paymentVoucherNum = paymentVoucherNum;
-        this.amountInWords = amountInWords;
-        this.amount = amount;
-        this.bank = bank;
-        this.receipt = receipt;
-        this.month = month;
-        this.dateOfPayment = dateOfPayment;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.payments = payments;
+        this.created = created;
+        this.modified = modified;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Payment getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Payment payments) {
+        this.payments = payments;
+    }
+
+    
 
     public int getCompanyId() {
         return companyId;
@@ -131,86 +133,6 @@ public class Company {
         this.fullName = fullName;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public boolean isSignature() {
-        return signature;
-    }
-
-    public void setSignature(boolean signature) {
-        this.signature = signature;
-    }
-
-    public String getPurposeOfPayment() {
-        return purposeOfPayment;
-    }
-
-    public void setPurposeOfPayment(String purposeOfPayment) {
-        this.purposeOfPayment = purposeOfPayment;
-    }
-
-    public String getPaymentVoucherNum() {
-        return paymentVoucherNum;
-    }
-
-    public void setPaymentVoucherNum(String paymentVoucherNum) {
-        this.paymentVoucherNum = paymentVoucherNum;
-    }
-
-    public String getAmountInWords() {
-        return amountInWords;
-    }
-
-    public void setAmountInWords(String amountInWords) {
-        this.amountInWords = amountInWords;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
-
-    public String getReceipt() {
-        return receipt;
-    }
-
-    public void setReceipt(String receipt) {
-        this.receipt = receipt;
-    }
-
-    public Date getMonth() {
-        return month;
-    }
-
-    public void setMonth(Date month) {
-        this.month = month;
-    }
-
-    public Date getDateOfPayment() {
-        return dateOfPayment;
-    }
-
-    public void setDateOfPayment(Date dateOfPayment) {
-        this.dateOfPayment = dateOfPayment;
-    }
-
     public Date getCreated() {
         return created;
     }
@@ -229,8 +151,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{" + "companyId=" + companyId + ", username=" + username + ", password=" + password + ", companyName=" + companyName + ", fullName=" + fullName + ", signature=" + signature + ", purposeOfPayment=" + purposeOfPayment + ", paymentVoucherNum=" + paymentVoucherNum + ", amountInWords=" + amountInWords + ", amount=" + amount + ", bank=" + bank + ", receipt=" + receipt + ", month=" + month + ", dateOfPayment=" + dateOfPayment + ", created=" + created + ", modified=" + modified + '}';
+        return "Company{" + "companyId=" + companyId + ", username=" + username + ", password=" + password + ", companyName=" + companyName + ", fullName=" + fullName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", payments=" + payments + ", created=" + created + ", modified=" + modified + '}';
     }
-    
     
 }

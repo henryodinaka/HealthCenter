@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/HealthCenter/web/confirmation.xhtml</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/controller/CompanyBean.java</file>
+            <file>file:/C:/HealthCenter/web/new_payment.xhtml</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/model/Company.java</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/service/CompanyServiceImpl.java</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/utils/AuthorizationFilter.java</file>
+            <file>file:/C:/HealthCenter/web/login.xhtml</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/service/CompanyService.java</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/config/HibernateConfig.java</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/config/HealthCenterInitializer.java</file>
+            <file>file:/C:/HealthCenter/web/index.xhtml</file>
+            <file>file:/C:/HealthCenter/web/new_account.xhtml</file>
+            <file>file:/C:/HealthCenter/web/company_dashboard.xhtml</file>
+            <file>file:/C:/HealthCenter/web/payment_voucher.xhtml</file>
+            <file>file:/C:/HealthCenter/web/html_to_pdf.xhtml</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/model/Payment.java</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/config/HealthCenterConfig.java</file>
+            <file>file:/C:/HealthCenter/src/java/health/center/utils/SessionUtils.java</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,102 +1,73 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+    <title>User Register</title>
     <h:head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="resources/movieSite.css"/>
-        <title>Payment Voucher</title>
+        <link type="text/css" rel="stylesheet" href="resources/sign_up_in.css" />
+        <link type="text/css" rel="stylesheet" href="resources/movieSite.css" />
+        <link type="text/css" rel="stylesheet" href="resources/w3.css-mini.css"/>
+        <meta name="Description" content="Sign up and login page for the Nsukka catholic community"/>
+
+
     </h:head>
     <h:body>
         <div id="header">
-            <!--<ui:include src="header.xhtml"/>-->
-        </div>
-        <div id="wrapper-other"> 
-            <div class="form-tag-div">
-                <p class="form-caption"><h1>Payment Voucher</h1></p> 
-                <h:form class="animate" id="regForm">
 
-                    <div class="form-tag"><br/>
-                        <p:outputLabel class="form-label"  value="Head " for="head" /> <br/> <br/>
-                        <p:inputText a:autofocus="true" id="head" value="#{companyBean.companyName}" placeholder="Your Company name" required="true" /> 
-                    </div>
-
-                    <div class="form-tag"><br/>
-                        <p:outputLabel class="form-label"  value="Last Name " for="lName" />  <br/> <br/>
-                        <p:inputText id="lName" value="#{companyBean.fullName}" placeholder="Full Name" required="true" /> 
-                    </div><br/>
-                    
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Month paid" for="month" /> <br/> <br/>
-                        <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Month Paid for" /> 
-                    </div><br/>
-                    
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
-                        <p:inputText id="pvn" value="#{companyBean.paymentVoucherNum}"  placeholder="Payment Voucher Number" required="true" />
-                    </div><br/>
-                    
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
-                        <p:inputText id="purpose" value="#{companyBean.purposeOfPayment}"  placeholder="Purpose Of Payment" required="true" />
-                    </div><br/>
-                    
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
-                        <p:inputText id="amount" value="#{companyBean.amount}" placeholder="Amount Paid" required="true" />
-                    </div><br/>
-                    
-                    <div class="form-tag"> 
-                        <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
-                        <p:inputText id="bank" value="#{companyBean.bank}" placeholder ="Bank where the payment was made" required="true" />
-                    </div><br/>
-
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
-                        <p:inputText id="amountInWord" value="#{companyBean.amountInWords}" required="true"  placeholder="Amount in words"/>
-                    </div><br/>
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Title " for="title" />  <br/> <br/>
-                        <p:inputText id="title" value="#{companyBean.title}" required="true"  placeholder="Officer controlling Expenditure"/>
-                    </div><br/>
-                    
-                    
-                    <div class="form-tag">
-                        <p:outputLabel  class="form-label" value="Username " for="uName" /> <br/> <br/> 
-                        <p:inputText id="uName" value="#{companyBean.username}" placeholder="Username"  onchange="userNameVale()"  required="true" /> 
-                    </div>
-                    
-                    <div class="form-tag"><br/> 
-                        <p:outputLabel class="form-label"  value="Password " for="pass" /> <br/> <br/>
-                        <p:password id="pass"  value="#{companyBean.password}" placeholder="Password" onchange="passwordVal()" required="true" /> 
-                    </div>
-                    
-                    <div class="form-tag"><br/> 
-                        <p:outputLabel  class="form-label" value="Confirm Password " for="cPass" /> <br/> <br/>
-                        <p:password id="cPass" value="#{companyBean.password2}" placeholder="Confirm Password" onkeypress="confrimPass()" required="true" /> 
-                    </div><br/>
-
-                    
-                    <div class="form-tag">
-                        <p:selectBooleanCheckbox id="signature" value="#{companyBean.signature}" required="true"/> 
-                        <span>I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of #{companyBean.amountInWords} can be paid under the sub-head quoted </span>
-                        <p>Name : #{companyBean.fullName}</p>
-                        <p>Title : #{companyBean.title}</p>
-                    </div>
-                    
-                    <p class="form-tag">
-                        <h:commandButton class="form-btn" value="Submit" action="#{companyBean.save()}"/>
-                    </p>
+            <div id="navbar">
+                <h:form>
+                    <span class="nav-link active" ><h:commandLink  value="Home" action="index?faces-redirect=true"/></span>
+                    <span class="nav-link" ><h:commandLink value="Payment Voucher" action="payment_voucher?faces-redirect=true"/></span>
+                    <span class="nav-link" ><h:commandLink value="Genres" action="message?faces-redirect=true"/></span> 
+                    <span class="nav-link nv-right" ><h:commandLink value="Login" action="login?faces-redirect=true"/></span>
                 </h:form>
             </div> 
-        </div>  
+        </div>
+        <div id="container" class="col-12">
+            <div id="main-container">
+                <h:form>
+                    <p:panel id="panel" header="Add Payment Voucher">
+                        <div class="row">
+                            <div class="col-12"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <p><h:outputText value="New Account Creation"/></p>
+                            </div>
+                            <div class="col-3">
+                                <p><h:outputText value="New Payment"/></p>
+                            </div> 
+                            <div class="col-3">
+                                <p><h:outputText value="Details Confirmation"/></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <p><h:outputText value="#{companyBean.currentForm}"/></p>
+                            </div>
+                            <div class="col-3">
+                                <p><h:outputText value="#{companyBean.currentStage}"/> Of <h:outputText value="#{companyBean.totalStage}"/></p>
+                            </div>
+                        </div>
+                        <ui:insert name="body"/>
+                        <div class="row foot-section">
+                            <div class="col-5 form-btn-div">
+                                <span><p:commandButton action="index?faces-redirect=true" value="Cancel"/></span>
+                            </div>
+                            <div class="col-6 form-btn-div">
+                            <ui:insert name="nextButton"/>
+                            </div>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+
     </h:body>
+
 </html>
-
-
 
