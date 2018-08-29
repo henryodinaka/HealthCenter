@@ -65,12 +65,6 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="form-tag col-12">
-                                            <p:selectBooleanCheckbox id="signature" value="#{companyBean.signature}" required="true"/> 
-                                            <span>I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of #{companyBean.amountInWords} can be paid under the sub-head quoted </span> 
-                                        </div>
-                                    </div>
-                                    <div class="row">
 
                                         <div class="form-tag col-11">
                                             <p:outputLabel class="form-label"  value="Full Name " for="fName" />  <br/> <br/>
@@ -87,7 +81,7 @@
                         </ui:define>
                         <ui:define name="nextButton">
                             <span id="btn-next"  ><p:fileUpload value="#{companyBean.payReceipt}" value="Upload Receipt"/></span>
-                            <span id="btn-next"  ><p:commandButton action="#{companyBean.confirmDetails()}" value="Confirm Details"/></span>
+                            <span id="btn-next"  ><h:commandButton action="#{companyBean.confirmDetails()}" value="Confirm Details"/></span>
                         </ui:define>
                     </ui:composition>
                 </h:form>

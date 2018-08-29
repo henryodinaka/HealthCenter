@@ -34,7 +34,6 @@ body{
 .foot-section{
     margin: auto;
     width: 98%;
-    padding: 20px;
     height: 7em;
 }
 .form-btn-div{
@@ -42,7 +41,7 @@ body{
 }
 #btn-next{
     position: relative;
-    left: 75%;
+    left: 61%;
 }
 /*Grid styling */
 .col-1 {width: 8.33%;}
