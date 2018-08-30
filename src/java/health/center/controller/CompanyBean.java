@@ -1,12 +1,9 @@
 package health.center.controller;
 
-<<<<<<< HEAD
 import health.center.model.Company;
 import health.center.service.CompanyService;
-=======
 import health.center.model.Payment;
 import health.center.service.CompanyServiceImpl;
->>>>>>> 8f0f120c6a4fa4c06d4587bfe4e1eb376f6f5a5e
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -138,6 +135,21 @@ public class CompanyBean implements java.io.Serializable {
         }
 
     }
+<<<<<<< HEAD
+=======
+//    public String buttonPrevious() {
+//        int pageCounter = 1;
+//        if (pageCounter >= 1) {
+//            pageCounter--;
+//        }
+//        String cPage = pageNavigation[pageCounter];
+//        String mapValue = pageMap.get(cPage).toString();
+//        return cPage;
+//    }
+//
+// 
+        
+>>>>>>> 4a04cf38eada3982800a142885243bf21c190e1e
     public String getEmail() {
         return email;
     }
