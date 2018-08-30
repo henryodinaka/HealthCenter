@@ -16,44 +16,44 @@ import javax.servlet.http.HttpSession;
  *
  * @author LEOGOLD
  */
-@WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
+//@WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
 public class AuthorizationFilter implements Filter {
 
-  public AuthorizationFilter() {
-  }
-
-  @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
-
-  }
-
-  @Override
-  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) 
-      throws IOException, ServletException {
-    try {
-      HttpServletRequest request = (HttpServletRequest) servletRequest;
-      HttpServletResponse response = (HttpServletResponse) servletResponse;
-      HttpSession ses = request.getSession(false);
-
-      String reqURI = request.getRequestURI();
-      if (reqURI.contains("/index.xhtml")
-          ||reqURI.contains("/login.xhtml")
-          || reqURI.contains("/new_account.xhtml")
-          || reqURI.contains("/html_to_pdf.xhtml")
-          || (ses != null && ses.getAttribute("username") != null)
-          || reqURI.contains("/public/")
-          || reqURI.contains("javax.faces.resource")) {
-        chain.doFilter(request, servletResponse);
-      } else {
-        response.sendRedirect(request.getContextPath() + "/faces/login.xhtml");
-      }
-    } catch (IOException | ServletException e) {
-      System.out.println(e.getMessage());
+    public AuthorizationFilter() {
     }
-  }
 
-  @Override
-  public void destroy() {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
 
-  }
+    }
+
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
+            throws IOException, ServletException {
+//        try {
+//            HttpServletRequest request = (HttpServletRequest) servletRequest;
+//            HttpServletResponse response = (HttpServletResponse) servletResponse;
+//            HttpSession ses = request.getSession(false);
+//
+//            String reqURI = request.getRequestURI();
+//            if (reqURI.contains("/index.xhtml")
+//                    || reqURI.contains("/login.xhtml")
+//                    || reqURI.contains("/new_account.xhtml")
+//                    || reqURI.contains("/html_to_pdf.xhtml")
+//                    || (ses != null && ses.getAttribute("username") != null)
+//                    || reqURI.contains("/public/")
+//                    || reqURI.contains("javax.faces.resource")) {
+//                chain.doFilter(request, servletResponse);
+//            } else {
+//                response.sendRedirect(request.getContextPath() + "/faces/login.xhtml");
+//            }
+//        } catch (IOException | ServletException e) {
+//            System.out.println(e.getMessage());
+//        }
+    }
+
+    @Override
+    public void destroy() {
+
+    }
 }

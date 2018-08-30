@@ -19,7 +19,7 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Entity
 @Table(name = "company")
-public class Company {
+public class Company implements java.io.Serializable {
 
     @Id
     @Column(name = "companyId")
@@ -34,9 +34,6 @@ public class Company {
 
     @Column(nullable = false)
     private String companyName;
-
-    @Column(nullable = false)
-    private String fullName;
 
     @Column(nullable = false)
     private String phoneNumber;
@@ -58,16 +55,12 @@ public class Company {
     public Company() {
     }
 
-    public Company(String username, String password, String companyName, String fullName, String phoneNumber, String email, List<Payment> payments, Date created, Date modified) {
+    public Company(String username, String password, String companyName, String fullName, String phoneNumber, String email) {
         this.username = username;
         this.password = password;
         this.companyName = companyName;
-        this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.payments = payments;
-        this.created = created;
-        this.modified = modified;
     }
 
     public String getPhoneNumber() {
@@ -128,14 +121,6 @@ public class Company {
         this.companyName = companyName;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public Date getCreated() {
         return created;
     }
@@ -154,7 +139,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{" + "companyId=" + companyId + ", username=" + username + ", password=" + password + ", companyName=" + companyName + ", fullName=" + fullName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", payments=" + payments + ", created=" + created + ", modified=" + modified + '}';
+        return "Company{" + "companyId=" + companyId + ", username=" + username + ", password=" + password + ", companyName=" + companyName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", payments=" + payments + ", created=" + created + ", modified=" + modified + '}';
     }
     
 }
