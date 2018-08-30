@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import org.primefaces.component.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -39,6 +40,7 @@ public class CompanyBean {
     private String nextButton = "New Payment";
     private String previousButtton = "Cancel";
     private final int totalStage;
+    private FileUpload paymentReceipt;
     private final String pageNavigation[] = {"index", "new_account", "new_payment", "confirmation"};
     private final Map<String, String> pageMap;
 
@@ -262,6 +264,14 @@ public class CompanyBean {
 //    public void setConfirmInfo(String confirmInfo) {
 //        this.confirmInfo = confirmInfo;
 //    }
+
+    public FileUpload getPaymentReceipt() {
+        return paymentReceipt;
+    }
+
+    public void setPaymentReceipt(FileUpload paymentReceipt) {
+        this.paymentReceipt = paymentReceipt;
+    }
 
     public String getCurrentForm() {
         return currentForm;
