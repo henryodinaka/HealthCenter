@@ -9,8 +9,11 @@ import health.center.model.Company;
  */
 public interface CompanyService {
     
-    public void save();
-    public Company login();
+    public void save(Company company);
+    
+    public Company login(String username, String password);
+    
     public Company retrieveOne();
+    
     public List<Company> retrieveAll();
 }

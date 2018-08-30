@@ -95,7 +95,7 @@ public class CompanyBean {
         String cPage = null;
         while (pageC < pageNavigation.length) {
             cPage = pageNavigation[pageC];
-            String mapValue = pageMap.get(cPage).toString();
+            String mapValue = pageMap.get(cPage);
             setNextButton(mapValue);
             setCurrentForm(mapValue);
 
@@ -109,7 +109,7 @@ public class CompanyBean {
             pageCounter--;
         }
         String cPage = pageNavigation[pageCounter];
-        String mapValue = pageMap.get(cPage).toString();
+        String mapValue = pageMap.get(cPage);
         return cPage;
     }
 
