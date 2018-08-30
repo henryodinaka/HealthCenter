@@ -1,8 +1,10 @@
 package health.center.controller;
 
+import health.center.model.Payment;
 import health.center.service.CompanyServiceImpl;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -36,7 +38,7 @@ public class CompanyBean {
     private Date createdDate;
     private Date modifiedDate;
     private Date dateOfPayment; 
-    private String currentForm = "New Payment";
+    private String currentForm = "New Account";
     private int currentStage = 1;
     private int pageCounter = 1;
     private String nextButton = "New Payment";
@@ -45,7 +47,7 @@ public class CompanyBean {
     private FileUpload paymentReceipt;
     private final String pageNavigation[] = {"index", "new_account", "new_payment", "confirmation"};
     private final Map<String, String> pageMap;
-
+    private List<Payment> allReceipt;
     @Autowired
     CompanyServiceImpl companyService;
 
@@ -73,8 +75,19 @@ public class CompanyBean {
         return "confirmation?faces-redirect=true";
     }
 
-    public String moreDetails(int paymentId){
+    public String paymentDetails(int paymentId){
         return"confirmation?faces-redirect=true";
+    }
+    public String oneCompanyReceipt(int companyId){
+//        The list of all the receipts from the db for a particular company should asigned to allReceipt variabe
+        return "all_receipt?faces-redirect=true";
+    }
+    public String receiptToPdf(int paymentId){
+        //add your code here 
+        return"html_to_pdf?faces-redirect=true";
+    }
+    public void printReceipt(){
+        
     }
     public String updateDetails(){
         return"confrimation?faces-redirect=true";
@@ -103,16 +116,18 @@ public class CompanyBean {
 
     }
 
-    public String buttonPrevious() {
-        int pageCounter = 1;
-        if (pageCounter >= 1) {
-            pageCounter--;
-        }
-        String cPage = pageNavigation[pageCounter];
-        String mapValue = pageMap.get(cPage).toString();
-        return cPage;
-    }
-
+//    public String buttonPrevious() {
+//        int pageCounter = 1;
+//        if (pageCounter >= 1) {
+//            pageCounter--;
+//        }
+//        String cPage = pageNavigation[pageCounter];
+//        String mapValue = pageMap.get(cPage).toString();
+//        return cPage;
+//    }
+//
+//    
+    
     public String getEmail() {
         return email;
     }
@@ -248,31 +263,7 @@ public class CompanyBean {
     public void setTitle(String title) {
         this.title = title;
     }
-//
-//    public String getAccountInfo() {
-//        return accountInfo;
-//    }
-//
-//    public void setAccountInfo(String accountInfo) {
-//        this.accountInfo = accountInfo;
-//    }
-//
-//    public String getPaymentInfo() {
-//        return paymentInfo;
-//    }
-//
-//    public void setPaymentInfo(String paymentInfo) {
-//        this.paymentInfo = paymentInfo;
-//    }
-//
-//    public String getConfirmInfo() {
-//        return confirmInfo;
-//    }
-//
-//    public void setConfirmInfo(String confirmInfo) {
-//        this.confirmInfo = confirmInfo;
-//    }
-
+    
     public FileUpload getPaymentReceipt() {
         return paymentReceipt;
     }
@@ -346,6 +337,14 @@ public class CompanyBean {
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public List<Payment> getAllReceipt() {
+        return allReceipt;
+    }
+
+    public void setAllReceipt(List<Payment> allReceipt) {
+        this.allReceipt = allReceipt;
     }
 
 }
