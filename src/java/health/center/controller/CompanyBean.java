@@ -1,12 +1,17 @@
 package health.center.controller;
 
+<<<<<<< HEAD
+import health.center.model.Company;
+import health.center.service.CompanyService;
+=======
 import health.center.model.Payment;
 import health.center.service.CompanyServiceImpl;
+>>>>>>> 8f0f120c6a4fa4c06d4587bfe4e1eb376f6f5a5e
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.primefaces.component.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author LEOGOLD
  */
 @Named(value = "companyBean")
-@RequestScoped
-public class CompanyBean {
+@SessionScoped
+public class CompanyBean implements java.io.Serializable {
 
     private String email;
     private String phone;
@@ -49,7 +54,7 @@ public class CompanyBean {
     private final Map<String, String> pageMap;
     private List<Payment> allReceipt;
     @Autowired
-    CompanyServiceImpl companyService;
+    CompanyService companyService;
 
     public CompanyBean() {
         this.pageMap = new HashMap<>();
@@ -62,10 +67,18 @@ public class CompanyBean {
     }
 
     public String saveNewAccount() {
-
+        Company company = new Company(username, password, companyName, fullName, phone, email);
+        companyService.save(company);
         pageCounter = 2;
         dynamicText(pageCounter);
         return "new_payment?faces-redirect=true";
+    }
+    
+    public void setCompanyDetails(Company company){
+        setUsername(company.getUsername());
+        setCompanyName(company.getCompanyName());
+        setPhone(company.getPhoneNumber());
+        setEmail(company.getEmail());
     }
 
     public String confirmDetails() {
@@ -100,7 +113,17 @@ public class CompanyBean {
     }
 
     public String login() {
+        try{
+            Company company = companyService.login(username, password);
+            setCompanyDetails(company);
+        } catch (NullPointerException e){
+            return "login";
+        }
         return "company_dashboard?faces-redirect=true";
+    }
+    
+    public List allPayment(){
+        return null;
     }
 
     public void dynamicText(int pageC) {
@@ -275,11 +298,11 @@ public class CompanyBean {
         this.currentStage = currentStage;
     }
 
-    public CompanyServiceImpl getCompanyService() {
+    public CompanyService getCompanyService() {
         return companyService;
     }
 
-    public void setCompanyService(CompanyServiceImpl companyService) {
+    public void setCompanyService(CompanyService companyService) {
         this.companyService = companyService;
     }
 

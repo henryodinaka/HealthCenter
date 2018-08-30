@@ -19,7 +19,7 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Entity
 @Table(name = "company")
-public class Company {
+public class Company implements java.io.Serializable {
 
     @Id
     @Column(name = "companyId")
@@ -34,7 +34,11 @@ public class Company {
 
     @Column(nullable = false)
     private String companyName;
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 8f0f120c6a4fa4c06d4587bfe4e1eb376f6f5a5e
     @Column(nullable = false)
     private String phoneNumber;
 
@@ -55,6 +59,14 @@ public class Company {
     public Company() {
     }
 
+<<<<<<< HEAD
+    public Company(String username, String password, String companyName, String fullName, String phoneNumber, String email) {
+        this.username = username;
+        this.password = password;
+        this.companyName = companyName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+=======
     public Company(String username, String password, String companyName, String phoneNumber, String email) {
         this.username = username;
         this.password = password;
@@ -63,6 +75,7 @@ public class Company {
         this.email = email;
         this.created = created;
         this.modified = modified;
+>>>>>>> 8f0f120c6a4fa4c06d4587bfe4e1eb376f6f5a5e
     }
 
     public String getPhoneNumber() {
@@ -122,7 +135,11 @@ public class Company {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+<<<<<<< HEAD
+
+=======
  
+>>>>>>> 8f0f120c6a4fa4c06d4587bfe4e1eb376f6f5a5e
     public Date getCreated() {
         return created;
     }
@@ -141,7 +158,11 @@ public class Company {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
+        return "Company{" + "companyId=" + companyId + ", username=" + username + ", password=" + password + ", companyName=" + companyName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", payments=" + payments + ", created=" + created + ", modified=" + modified + '}';
+=======
         return "Company{" + "companyId=" + companyId + ", username=" + username + ", password=" + password + ", companyName=" + companyName + ",phoneNumber=" + phoneNumber + ", email=" + email + ", payments=" + payments + ", created=" + created + ", modified=" + modified + '}';
+>>>>>>> 8f0f120c6a4fa4c06d4587bfe4e1eb376f6f5a5e
     }
     
 }
