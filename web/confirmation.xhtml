@@ -86,6 +86,8 @@
             </div>
         </ui:define>
         <ui:define name="nexttButton">
+            
+            <span id="btn-next"  ><p:commandButton action="ney_payment?faces-redirect=true" value="Edit Details"/></span>
             <span id="btn-next"  ><p:commandButton action="#{companyBean.addPayment()}" value="Add Payment"/></span>
         </ui:define>
     </ui:composition>

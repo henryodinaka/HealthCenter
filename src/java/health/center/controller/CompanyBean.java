@@ -33,6 +33,8 @@ public class CompanyBean {
     private String bank;
     private String receipt;
     private Date month;
+    private Date createdDate;
+    private Date modifiedDate;
     private Date dateOfPayment; 
     private String currentForm = "New Payment";
     private int currentStage = 1;
@@ -71,6 +73,12 @@ public class CompanyBean {
         return "confirmation?faces-redirect=true";
     }
 
+    public String moreDetails(int paymentId){
+        return"confirmation?faces-redirect=true";
+    }
+    public String updateDetails(){
+        return"confrimation?faces-redirect=true";
+    }
     public String addPayment() {
 
         pageCounter = 2;
@@ -322,6 +330,22 @@ public class CompanyBean {
 //    }
     public int getTotalStage() {
         return totalStage;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
 }
