@@ -108,7 +108,7 @@ public class CompanyBean {
         String cPage = null;
         while (pageC < pageNavigation.length) {
             cPage = pageNavigation[pageC];
-            String mapValue = pageMap.get(cPage).toString();
+            String mapValue = pageMap.get(cPage);
             setNextButton(mapValue);
             setCurrentForm(mapValue);
 
@@ -116,6 +116,7 @@ public class CompanyBean {
 
     }
 
+<<<<<<< HEAD
 //    public String buttonPrevious() {
 //        int pageCounter = 1;
 //        if (pageCounter >= 1) {
@@ -128,6 +129,18 @@ public class CompanyBean {
 //
 //    
     
+=======
+    public String buttonPrevious() {
+        int pageCounter = 1;
+        if (pageCounter >= 1) {
+            pageCounter--;
+        }
+        String cPage = pageNavigation[pageCounter];
+        String mapValue = pageMap.get(cPage);
+        return cPage;
+    }
+
+>>>>>>> 4831c99ea12092217ed238d9417ddf82deaec5ba
     public String getEmail() {
         return email;
     }

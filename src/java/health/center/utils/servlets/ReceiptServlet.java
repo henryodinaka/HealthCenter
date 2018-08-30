@@ -5,7 +5,11 @@
  */
 package health.center.utils.servlets;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,13 +18,19 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Blaccop Group
+ * @author Kelechi
  */
 @WebServlet(name = "ReceiptServlet", urlPatterns = {"/user/receipt/*"})
 public class ReceiptServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        String path = null;
+        try (InputStream in = new FileInputStream(new File(path)); OutputStream out = response.getOutputStream()) {
+            int c;
+            while ((c = in.read()) != -1) {
+                out.write(c);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
