@@ -115,32 +115,6 @@ public class CompanyBean {
         }
 
     }
-
-<<<<<<< HEAD
-//    public String buttonPrevious() {
-//        int pageCounter = 1;
-//        if (pageCounter >= 1) {
-//            pageCounter--;
-//        }
-//        String cPage = pageNavigation[pageCounter];
-//        String mapValue = pageMap.get(cPage).toString();
-//        return cPage;
-//    }
-//
-//    
-    
-=======
-    public String buttonPrevious() {
-        int pageCounter = 1;
-        if (pageCounter >= 1) {
-            pageCounter--;
-        }
-        String cPage = pageNavigation[pageCounter];
-        String mapValue = pageMap.get(cPage);
-        return cPage;
-    }
-
->>>>>>> 4831c99ea12092217ed238d9417ddf82deaec5ba
     public String getEmail() {
         return email;
     }
