@@ -80,8 +80,10 @@
                                     </div> 
                                 </div>
                             </div>
-                            <span id="btn-next"  ><p:fileUpload value="#{companyBean.paymentReceipt}"/></span>
-                            <span id="btn-next"  ><h:commandButton action="#{companyBean.confirmDetails()}" value="Confirm Details"/></span>
+                            <div>
+                                <p:fileUpload value="#{companyBean.paymentReceipt}"/>
+                                <h:commandButton action="#{companyBean.confirmDetails()}" value="Confirm Details"/>
+                            </div>
                         </h:form>
                     </ui:define>
                 </ui:composition>

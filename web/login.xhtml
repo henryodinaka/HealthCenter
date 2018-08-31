@@ -32,7 +32,9 @@
             <div class="form-tag-div">
                 <p class="form-caption"><h1>Create Account for your Company</h1></p> 
                 <h:form id="regForm" enctype="multipart/form-data">
-
+                    <div>
+                        <p:message showDetail="true" showSummary="true" for=""/>
+                    </div>
                     <div class="form-tag">
                         <p:outputLabel class="form-label"  value="Head " for="head" /> <br/> <br/>
                         <p:inputText a:autofocus="true" id="head" value="#{companyBean.companyName}" placeholder="Your Company name" required="true" /> 
