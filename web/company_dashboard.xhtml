@@ -11,62 +11,63 @@
     <h:body>
         <ui:composition template="base_template.xhtml">
             <ui:define name="body">
-        <h1>Welcome <h:outputText value="#{companyBean.companyName}"/></h1>
-        <div class="row">
-            <div class="col-5">
-                <p>
-                    This account was created on the <h:outputText value="#{companyBean.createdDate}"/>
-                     with the following details;
-                </p>
-                <p>
-                    Company Name: <h:outputText value="#{companyBean.companyName}"/>
-                </p>
-                <p>
-                    Email Address: <h:outputText value="#{companyBean.email}"/>
-                </p>
-                <p>
-                    Phone Number: <h:outputText value="#{companyBean.phone}"/>
-                </p>
-                <p>
-                    Username : <h:outputText value="#{companyBean.username}"/>
-                </p>
-                <p>
-                    Officer Controlling Expenditure: <h:outputText value="#{companyBean.title}"/>
-                </p>
-                <p>
-                    <p:commandButton action="#{companyBean.updateDetails()}" value="Save Update"/>
-                </p>
-            </div>
-            <div class="col-5">
-                          
+                <h1>Welcome <h:outputText value="#{companyBean.companyName}"/></h1>
+                <div class="row">
+                    <div class="col-5">
+                        <p>
+                            This account was created on the <h:outputText value="#{companyBean.createdDate}"/>
+                            with the following details;
+                        </p>
+                        <p>
+                            Company Name: <h:outputText value="#{companyBean.companyName}"/>
+                        </p>
+                        <p>
+                            Email Address: <h:outputText value="#{companyBean.email}"/>
+                        </p>
+                        <p>
+                            Phone Number: <h:outputText value="#{companyBean.phone}"/>
+                        </p>
+                        <p>
+                            Username : <h:outputText value="#{companyBean.username}"/>
+                        </p>
+                        <p>
+                            Officer Controlling Expenditure: <h:outputText value="#{companyBean.title}"/>
+                        </p>
+                        <p>
+                            <p:commandButton action="#{companyBean.updateDetails()}" value="Save Update"/>
+                        </p>
+                    </div>
+                    <div class="col-5">
+                        <h:form id="paymentReview">
+                            <p:dataGrid var="pay" value="#{companyBean.allPayment()}" columns="2"
+                                        rows="8" paginator="true" id="movie-grid"
+                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        rowsPerPageTemplate="6,12,16">
 
-            <h:form id="paymentReview">
-                <p:dataGrid var="pay" value="#{companyBean.allPayment()}" columns="2" layout="grid"
-                            rows="8" paginator="true" id="movie-grid"
-                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                            rowsPerPageTemplate="6,12,16">
+                                <f:facet name="header">
+                                    <p class="caption-index">The List of all the payments</p>
+                                </f:facet>
 
-                    <f:facet name="header">
-                        <p class="caption-index">The List of all the payments</p>
-                    </f:facet>
+                                <p:panel header="#{companyBean.month}" style="text-align:center">
+                                    <h:panelGrid columns="1" style="width:100%">
+                                        <p:graphicImage name="ReceiptURI"/> 
 
-                    <p:panel header="#{companyBean.month}" style="text-align:center">
-                        <h:panelGrid columns="1" style="width:100%">
-                            <p:graphicImage name="ReceiptURI"/> 
+                                        Paid By :<h:outputText value="#{companyBean.fullName}" />
 
-                            Paid By :<h:outputText value="#{companyBean.fullName}" />
+                                        Amount :<h:outputText value="#{companyBean.amount}" />
 
-                            Amount :<h:outputText value="#{companyBean.amount}" />
+                                        <h:commandButton value="More" action="#{companyBean.paymentDetails(pay.paymenId)}" title="View Detail">
+                                        </h:commandButton>
+                                    </h:panelGrid>
+                                </p:panel>
 
-                            <h:commandButton value="More" action="#{companyBean.paymentDetails(pay.paymenId)}" title="View Detail">
-                            </h:commandButton>
-                        </h:panelGrid>
-                    </p:panel>
-
-                </p:dataGrid>
-            </h:form> 
-            </div>
-        </div>
+                            </p:dataGrid>
+                        </h:form> 
+                    </div>
+                </div>
+                <div>
+                    <p:commandButton value="Make Payment" action="new_payment?faces-redirect=true"/>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

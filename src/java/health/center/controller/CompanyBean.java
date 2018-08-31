@@ -3,14 +3,16 @@ package health.center.controller;
 import health.center.model.Company;
 import health.center.service.CompanyService;
 import health.center.model.Payment;
-import health.center.service.CompanyServiceImpl;
+import health.center.utils.FileUpload;
+import health.center.utils.SessionUtils;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
-import org.primefaces.component.fileupload.FileUpload;
+import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -39,14 +41,14 @@ public class CompanyBean implements java.io.Serializable {
     private Date month;
     private Date createdDate;
     private Date modifiedDate;
-    private Date dateOfPayment; 
+    private Date dateOfPayment;
     private String currentForm = "New Account";
     private int currentStage = 1;
     private int pageCounter = 1;
     private String nextButton = "New Payment";
     private String previousButtton = "Cancel";
     private final int totalStage;
-    private FileUpload paymentReceipt;
+    private UploadedFile paymentReceipt;
     private final String pageNavigation[] = {"index", "new_account", "new_payment", "confirmation"};
     private final Map<String, String> pageMap;
     private List<Payment> allReceipt;
@@ -60,7 +62,7 @@ public class CompanyBean implements java.io.Serializable {
         pageMap.put("new_account", "New Account Creation");
         pageMap.put("new_payment", "New Payment");
         pageMap.put("confirmation", "Details Confirmation");
-        totalStage = pageNavigation.length-1;
+        totalStage = pageNavigation.length - 1;
     }
 
     public String saveNewAccount() {
@@ -70,8 +72,8 @@ public class CompanyBean implements java.io.Serializable {
         dynamicText(pageCounter);
         return "new_payment?faces-redirect=true";
     }
-    
-    public void setCompanyDetails(Company company){
+
+    public void setCompanyDetails(Company company) {
         setUsername(company.getUsername());
         setCompanyName(company.getCompanyName());
         setPhone(company.getPhoneNumber());
@@ -79,29 +81,46 @@ public class CompanyBean implements java.io.Serializable {
     }
 
     public String confirmDetails() {
+        Company company = new Company();
+        company.setCompanyId(SessionUtils.getCompanyId());
+        System.out.println("Content type: " + paymentReceipt.getContentType());
+        System.out.println("Filename: " + paymentReceipt.getFileName());
+        receipt = new FileUpload().upload(paymentReceipt, username);
+        if (!receipt.equals("error")) {
+            Payment payment = new health.center.model.Payment(company, fullName, title, signature, purposeOfPayment, paymentVoucherNum, amountInWords, amount, bank, receipt, month, dateOfPayment);
+            companyService.makePayment(payment);
+            pageCounter = 3;
+            dynamicText(pageCounter);
+            return "confirmation?faces-redirect=true";
+        } else {
+            FacesMessage message = new FacesMessage("Receipt upload failed");
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            return "new_payment";
+        }
+    }
 
-        pageCounter = 3;
-        dynamicText(pageCounter);
+    public String paymentDetails(int paymentId) {
         return "confirmation?faces-redirect=true";
     }
 
-    public String paymentDetails(int paymentId){
-        return"confirmation?faces-redirect=true";
-    }
-    public String oneCompanyReceipt(int companyId){
+    public String oneCompanyReceipt(int companyId) {
 //        The list of all the receipts from the db for a particular company should asigned to allReceipt variabe
         return "all_receipt?faces-redirect=true";
     }
-    public String receiptToPdf(int paymentId){
+
+    public String receiptToPdf(int paymentId) {
         //add your code here 
-        return"html_to_pdf?faces-redirect=true";
+        return "html_to_pdf?faces-redirect=true";
     }
-    public void printReceipt(){
-        
+
+    public void printReceipt() {
+
     }
-    public String updateDetails(){
-        return"confrimation?faces-redirect=true";
+
+    public String updateDetails() {
+        return "confrimation?faces-redirect=true";
     }
+
     public String addPayment() {
 
         pageCounter = 2;
@@ -110,16 +129,17 @@ public class CompanyBean implements java.io.Serializable {
     }
 
     public String login() {
-        try{
+        try {
             Company company = companyService.login(username, password);
+            SessionUtils.getSession().setAttribute("companyId", company.getCompanyId());
             setCompanyDetails(company);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return "login";
         }
         return "company_dashboard?faces-redirect=true";
     }
-    
-    public List allPayment(){
+
+    public List allPayment() {
         return null;
     }
 
@@ -146,7 +166,7 @@ public class CompanyBean implements java.io.Serializable {
 //    }
 //
 // 
-        
+
     public String getEmail() {
         return email;
     }
@@ -282,12 +302,12 @@ public class CompanyBean implements java.io.Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    
-    public FileUpload getPaymentReceipt() {
+
+    public UploadedFile getPaymentReceipt() {
         return paymentReceipt;
     }
 
-    public void setPaymentReceipt(FileUpload paymentReceipt) {
+    public void setPaymentReceipt(UploadedFile paymentReceipt) {
         this.paymentReceipt = paymentReceipt;
     }
 

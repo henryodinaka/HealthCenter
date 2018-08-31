@@ -13,7 +13,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Paths;
-import javax.servlet.http.Part;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -33,7 +33,7 @@ public class FileUpload {
         }
     }
 
-    public String upload(Part file, String username) {
+    public String upload(UploadedFile file, String username) {
         String fileType = "." + file.getContentType().split("/")[1];
         String fileName = null;
         if (file.getContentType().contains("pdf") || file.getContentType().contains("image") && file.getSize() <= 2000000) {
@@ -42,7 +42,7 @@ public class FileUpload {
                 if (!f.exists()) {
                     f.createNewFile();
                 }
-                try(InputStream in = file.getInputStream(); OutputStream out = new FileOutputStream(f)){
+                try(InputStream in = file.getInputstream(); OutputStream out = new FileOutputStream(f)){
                     int c;
                     while((c = in.read()) != -1){
                         out.write(c);

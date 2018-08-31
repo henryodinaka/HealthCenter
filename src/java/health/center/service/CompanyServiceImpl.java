@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.SessionFactory;
 import health.center.model.Company;
+import health.center.model.Payment;
 import java.util.List;
 /**
  *
@@ -39,6 +40,11 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public List<Company> retrieveAll() {
         return sessionFactory.getCurrentSession().createQuery("From Company").list();
+    }
+
+    @Override
+    public void makePayment(Payment payment) {
+        sessionFactory.getCurrentSession().save(payment);
     }
     
     
