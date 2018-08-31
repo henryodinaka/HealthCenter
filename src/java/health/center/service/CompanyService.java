@@ -2,6 +2,7 @@ package health.center.service;
 
 import java.util.List;
 import health.center.model.Company;
+import health.center.model.Payment;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface CompanyService {
     public Company retrieveOne();
     
     public List<Company> retrieveAll();
+    
+    public void makePayment(Payment payment);
 }

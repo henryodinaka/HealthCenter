@@ -29,10 +29,10 @@ public class SessionUtils {
     return session.getAttribute("username").toString();
   }
 
-  public static String getCompanyId() {
+  public static Integer getCompanyId() {
     HttpSession session = getSession();
     if (session != null) {
-      return String.valueOf(session.getAttribute("companyId"));
+      return (Integer) session.getAttribute("companyId");
     } 
       
     return null;

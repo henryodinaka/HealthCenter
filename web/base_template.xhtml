@@ -31,7 +31,9 @@
         <div id="wrapper-other"> 
 
             <div id="main-content">
-                <ui:insert name="body"/>
+                <h:form enctype="multipart/form-data">
+                    <ui:insert name="body"/>
+                </h:form>
             </div>
         </div> 
         <ui:include src="footer.xhtml"/>

@@ -18,9 +18,9 @@
     <h:body>
         <div id="container" class="col-12">
             <div id="main-container">
-                <h:form>
-                    <ui:composition template="payment_voucher.xhtml">
-                        <ui:define name="body">
+                <ui:composition template="payment_voucher.xhtml">
+                    <ui:define name="body">
+                        <h:form>
                             <div id="form-container" class="row">
 
                                 <div id="form-content" class="col-9">
@@ -65,13 +65,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </ui:define>
-                        <ui:define name="nextButton">
-                                <span id="btn-next"  ><p:commandButton action="#{companyBean.saveNewAccount()}" value="New Payment"/></span>
-                        </ui:define>
-                    </ui:composition>
-
-                </h:form>
+                            <div>
+                                <span id="btn-next"  ><p:commandButton action="#{companyBean.newPayment()}" value="New Payment"/></span>
+                            </div>
+                        </h:form>
+                    </ui:define>
+                </ui:composition>
             </div>
         </div>
 
