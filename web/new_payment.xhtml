@@ -80,9 +80,23 @@
                                     </div> 
                                 </div>
                             </div>
-                            <div>
-                                <p:fileUpload value="#{companyBean.paymentReceipt}"/>
-                                <h:commandButton action="#{companyBean.confirmDetails()}" value="Confirm Details"/>
+                            <div class="row foot-section">
+                                <div class="col-1 form-btn-div">
+                                    <span><p:commandButton action="index?faces-redirect=true" value="Cancel"/></span>
+                                </div> 
+                                <div class="col-9 form-btn-div">
+                                    <span id="btn-nex"  ><p:fileUpload fileUploadListener="#{companyBean.handleFileUpload}" value="#{companyBean.paymentReceipt}" mode="advanced" dragDropSupport="true"
+                                                                        update="messages" sizeLimit="20000000" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"/></span>
+                                    
+                                <p:growl id="messages" showDetail="true" />
+                                </div>
+                                <div class="col-1 form-btn-div">
+
+                                    <span id="btn-nex"  >
+
+                                        <p:commandButton action="confirmation?faces-redirect=true" value="Proceed"/>
+                                    </span>
+                                </div>
                             </div>
                         </h:form>
                     </ui:define>

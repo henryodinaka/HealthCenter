@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Map;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -90,12 +92,23 @@ public class CompanyBean implements java.io.Serializable {
         setEmail(null);
     }
 
-    public String confirmDetails() {
+    public void handleFileUpload(FileUploadEvent event) {
+        receipt = new FileUpload().upload(paymentReceipt, username);
+        if (!receipt.equals("error")) {
+        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            FacesMessage message = new FacesMessage("Failed","Receipt upload failed");
+            message.setSeverity(FacesMessage.SEVERITY_ERROR); 
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+    
+    public String makePayment() {
         Company company = new Company();
         company.setCompanyId(SessionUtils.getCompanyId());
-        System.out.println("Content type: " + paymentReceipt.getContentType());
+//        System.out.println("Content type: " + paymentReceipt.getContentType());
         System.out.println("Filename: " + paymentReceipt.getFileName());
-        receipt = new FileUpload().upload(paymentReceipt, username);
         if (!receipt.equals("error")) {
             Payment payment = new health.center.model.Payment(company, fullName, title, signature, purposeOfPayment, paymentVoucherNum, amountInWords, amount, bank, receipt, month, dateOfPayment);
             companyService.makePayment(payment);
@@ -108,8 +121,8 @@ public class CompanyBean implements java.io.Serializable {
             return "new_payment";
         }
     }
-
     public String paymentDetails(int paymentId) {
+        //this method will show more details about the the current payment beign viewed
         return "confirmation?faces-redirect=true";
     }
 
@@ -129,13 +142,6 @@ public class CompanyBean implements java.io.Serializable {
 
     public String updateDetails() {
         return "confrimation?faces-redirect=true";
-    }
-
-    public String addPayment() {
-
-        pageCounter = 2;
-        dynamicText(pageCounter);
-        return "new_payment?faces-redirect=true";
     }
 
     public String login() {
@@ -174,22 +180,7 @@ public class CompanyBean implements java.io.Serializable {
 
         }
 
-    }
-<<<<<<< HEAD
-=======
-//    public String buttonPrevious() {
-//        int pageCounter = 1;
-//        if (pageCounter >= 1) {
-//            pageCounter--;
-//        }
-//        String cPage = pageNavigation[pageCounter];
-//        String mapValue = pageMap.get(cPage).toString();
-//        return cPage;
-//    }
-//
-// 
-
->>>>>>> 527b91d2997209c8ea98ca86e7a757018c98e5ce
+    } 
     public String getEmail() {
         return email;
     }

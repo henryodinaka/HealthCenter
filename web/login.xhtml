@@ -30,46 +30,9 @@
         </div>
         <div id="wrapper-other"> 
             <div class="form-tag-div">
-                <p class="form-caption"><h1>Create Account for your Company</h1></p> 
-                <h:form id="regForm" enctype="multipart/form-data">
-                    <div>
-                        <p:message showDetail="true" showSummary="true" for=""/>
-                    </div>
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Head " for="head" /> <br/> <br/>
-                        <p:inputText a:autofocus="true" id="head" value="#{companyBean.companyName}" placeholder="Your Company name" required="true" /> 
-                    </div>
-                    <br/>  
-
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Phone Number" for="phone" />  <br/> <br/>
-                        <p:inputText id="phone" value="#{companyBean.phone}" required="true"  placeholder="Phone Number"/>
-                    </div><br/>
-                    <div class="form-tag">
-                        <p:outputLabel class="form-label"  value="Company's Email " for="email" />  <br/> <br/>
-                        <p:inputText id="email" value="#{companyBean.email}" required="true"  placeholder="Provide a valid Email"/>
-                    </div><br/>
-
-
-                    <div class="form-tag">
-                        <p:outputLabel  class="form-label" value="Username " for="uName" /> <br/> <br/> 
-                        <p:inputText id="uName" value="#{companyBean.username}" placeholder="Username"  onchange="userNameVale()"  required="true" /> 
-                    </div>
-
-                    <div class="form-tag"><br/> 
-                        <p:outputLabel class="form-label"  value="Password " for="pass" /> <br/> <br/>
-                        <p:password id="pass"  value="#{companyBean.password}" placeholder="Password" onchange="passwordVal()" required="true" /> 
-                    </div>
-
-                    <div class="form-tag"><br/> 
-                        <p:outputLabel  class="form-label" value="Confirm Password " for="cPass" /> <br/> <br/>
-                        <p:password id="cPass" value="#{companyBean.password2}" placeholder="Confirm Password" onkeypress="confrimPass()" required="true" /> 
-                    </div><br/>
-
-
-                    <p class="form-tag">
-                        <h:commandButton class="form-btn" value="Submit" action="#{companyBean.saveNewAccount()}"/>
-                    </p>
+                
+                <h:form id="regForm">
+                    <p class="form-caption"><h1><h:commandLink action="new_account?faces-redirect=true" value="Create Account for your Company"/> </h1></p> 
                 </h:form>
             </div> 
         </div>  

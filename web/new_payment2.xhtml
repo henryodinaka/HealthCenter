@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Home</title>
+        <link rel="stylesheet" href="resources/movieSite.css"/>
+        <link rel="stylesheet" href="resources/health-center.css"/> 
+
+    </h:head>
+    <h:body>
+        <div id="header">
+
+            <div id="caption">
+                <marquee width = "50%">Rivers State Primary Health Care Management Board</marquee>
+            </div>  
+
+
+            <div id="navbar">
+                <h:form>
+                    <span class="nav-link active" ><h:commandLink  value="Home" action="index?faces-redirect=true"/></span>
+                    <span class="nav-link" ><h:commandLink value="Payment Voucher" action="new_account?faces-redirect=true"/></span>
+                    <span class="nav-link" ><h:commandLink value="Genres" action="message?faces-redirect=true"/></span> 
+                    <span class="nav-link nv-right" ><h:commandLink value="Login" action="login?faces-redirect=true"/></span>
+                </h:form>
+            </div> 
+        </div> 
+        <h1 align="center">Rivers State Primary Health Care Management Board</h1>
+        <br />
+        <div id="wrapper-other"> 
+
+            <div id="main-content"> 
+                <h:form enctype="multipart/form-data">
+                    <div id="form-container" class="row">
+
+                        <div id="form-content" class="col-9">
+                            <div class="row">
+                                <p:messages for="" style="color: red;" />
+                            </div>
+                            <div class="row">
+
+                                <div class="form-tag col-7">
+                                    <p:outputLabel class="form-label"  value="Month" for="month" /> <br/> <br/>
+                                    <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Month Paid for" /> 
+                                </div>
+
+                                <div class="form-tag col-4">
+                                    <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
+                                    <p:inputText id="pvn" value="#{companyBean.paymentVoucherNum}"  placeholder="Payment Voucher Number" required="true" />  
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-tag col-5" ><br/>
+                                    <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
+                                    <p:inputText id="purpose" value="#{companyBean.purposeOfPayment}"  placeholder="Purpose Of Payment" required="true" />
+                                </div>
+
+                                <div class="form-tag col-6"><br/>
+                                    <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
+                                    <p:inputText id="amount" value="#{companyBean.amount}" placeholder="Amount Paid" required="true" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-tag col-5">
+                                    <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
+                                    <p:inputText id="bank" value="#{companyBean.bank}" placeholder ="Bank where the payment was made" required="true" />
+                                </div>
+
+                                <div class="form-tag col-6">
+                                    <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
+                                    <p:inputText id="amountInWord" value="#{companyBean.amountInWords}" required="true"  placeholder="Amount in words"/>
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <p:fileUpload fileUploadListener="#{companyBean.handleFileUpload}" value="#{companyBean.paymentReceipt}" mode="advanced" dragDropSupport="true"
+                                              update="messages" sizeLimit="20000000" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"/>
+                                <p:growl id="messages" showDetail="true" />
+                            </div>
+                            <div class="col-2">
+                                <h:commandButton action="confirmation?faces-redirect=true" value="Proceed"/>
+                            </div>
+                        </div>
+                    </div>
+                </h:form> 
+            </div>
+        </div> 
+        <ui:include src="footer.xhtml"/>
+    </h:body>
+</html>
+

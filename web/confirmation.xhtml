@@ -18,9 +18,9 @@
     <h:body> 
         <div id="container" class="col-12">
             <div id="main-container">
-                <h:form>
-                    <ui:composition template="payment_voucher.xhtml">
-                        <ui:define name="body">
+                <ui:composition template="payment_voucher.xhtml">
+                    <ui:define name="body">
+                        <h:form>
                             <div id="form-container" class="row">
 
                                 <div id="form-content" class="col-9">
@@ -30,72 +30,79 @@
                                         <div class="form-tag col-7">
                                             <p:outputLabel class="form-label"  value="Month" for="month" /> <br/> <br/>
                                             <h:outputText  id="month" value="#{companyBean.month}"/>
+                                        </div>
+
+                                        <div class="form-tag col-4">
+                                            <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
+                                            <h:outputText id="pvn" value="#{companyBean.paymentVoucherNum}"/> 
+                                        </div>
                                     </div>
 
-                                    <div class="form-tag col-4">
-                                        <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
-                                        <h:outputText id="pvn" value="#{companyBean.paymentVoucherNum}"/> 
-                                    </div>
-                                </div>
+                                    <div class="row">
 
-                                <div class="row">
+                                        <div class="form-tag col-5" ><br/>
+                                            <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
+                                            <h:outputText id="purpose" value="#{companyBean.purposeOfPayment}" />
+                                        </div>
 
-                                    <div class="form-tag col-5" ><br/>
-                                        <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
-                                        <h:outputText value="#{companyBean.purposeOfPayment}" />
-                                    </div>
-
-                                    <div class="form-tag col-6"><br/>
-                                        <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
-                                        <h:outputText id="amount" value="#{companyBean.amount}"/>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="form-tag col-5">
-                                        <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
-                                        <h:outputText id="bank" value="#{companyBean.bank}"/>
+                                        <div class="form-tag col-6"><br/>
+                                            <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
+                                            <h:outputText id="amount" value="#{companyBean.amount}"/>
+                                        </div>
                                     </div>
 
-                                    <div class="form-tag col-6">
-                                        <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
-                                        <h:outputText id="amountInWord" value="#{companyBean.amountInWords}"/>
+                                    <div class="row">
+
+                                        <div class="form-tag col-5">
+                                            <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
+                                            <h:outputText id="bank" value="#{companyBean.bank}"/>
+                                        </div>
+
+                                        <div class="form-tag col-6">
+                                            <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
+                                            <h:outputText id="amountInWord" value="#{companyBean.amountInWords}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-tag col-12">
+                                            <p:selectBooleanCheckbox id="signature" value="#{companyBean.signature}"/> 
+                                            <span>I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of #{companyBean.amountInWords} can be paid under the sub-head quoted </span> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-tag col-11">
+                                            <p:outputLabel class="form-label"  value="Full Name " for="fName" />  <br/> <br/>
+                                            <p:inputText id="fName" value="#{companyBean.fullName}" placeholder="Full Name" required="true" /> 
+                                        </div>
+
+                                        <div class="form-tag col-11">
+                                            <p:outputLabel class="form-label"  value="Title " for="title" />  <br/> <br/>
+                                            <p:inputText id="title" value="#{companyBean.title}" required="true"  placeholder="Officer controlling Expenditure"/>
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="form-tag col-12">
-                                    <p:selectBooleanCheckbox id="signature" value="#{companyBean.signature}"/> 
-                                    <span>I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of #{companyBean.amountInWords} can be paid under the sub-head quoted </span> 
+                        <div class="row foot-section">
+                            <div class="col-4 form-btn-div">
+                                <span><p:commandButton action="index?faces-redirect=true" value="Cancel"/></span>
+                            </div> <div class="col-3 form-btn-div">
+                                    
+                        <span id="btn-next"  ><p:commandButton action="new_payment?faces-redirect=true" value="Edit Details"/></span>
                                 </div>
-                            </div>
-                            <div class="row">
-
-                                <div class="form-tag col-11">
-                                    <p:outputLabel class="form-label"  value="Full Name " for="fName" />  <br/> <br/>
-                                    <h:outputText id="fName" value="#{companyBean.fullName}"/> 
-                            </div>
-
-                            <div class="form-tag col-11">
-                                <p:outputLabel class="form-label"  value="Title " for="title" />  <br/> <br/>
-                                <h:outputText id="title" value="#{companyBean.title}"/>
+                                <div class="col-4 form-btn-div">
+                                    
+                        <span id="btn-next"  ><p:commandButton action="#{companyBean.makePayment()}" value="Add Payment"/></span>
+                                </div>
                         </div>
-                    </div> 
-                </div>
+                        </h:form>
+                    </ui:define>
+                </ui:composition>
             </div>
-        </ui:define>
-        <ui:define name="nexttButton">
-            
-            <span id="btn-next"  ><p:commandButton action="ney_payment?faces-redirect=true" value="Edit Details"/></span>
-            <span id="btn-next"  ><p:commandButton action="#{companyBean.addPayment()}" value="Add Payment"/></span>
-        </ui:define>
-    </ui:composition>
-</h:form>
-</div>
-</div>
+        </div>
 
-</h:body>
+    </h:body>
 
 </html>
 
