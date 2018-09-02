@@ -13,6 +13,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class CompanyBean implements java.io.Serializable {
     private Date createdDate;
     private Date modifiedDate;
     private Date dateOfPayment;
-    private String currentForm = "New Account";
+    private String currentForm;
     private int currentStage = 1;
     private int pageCounter = 1;
     private String nextButton = "New Payment";
@@ -71,8 +72,6 @@ public class CompanyBean implements java.io.Serializable {
         Company company = new Company(username, password, companyName, fullName, phone, email);
         companyService.save(company);
         clearCompanyDetails();
-//        pageCounter = 2;
-//        dynamicText(pageCounter);
         FacesMessage message = new FacesMessage("Registration successful! Please login to make payment");
         message.setSeverity(FacesMessage.SEVERITY_INFO);
         return "login";
@@ -155,30 +154,33 @@ public class CompanyBean implements java.io.Serializable {
         }
         return "company_dashboard?faces-redirect=true";
     }
+    public String newPayment(){
+        HttpSession userSession = SessionUtils.getSession();
+        if (userSession.getAttribute("username") != null){
+            System.out.println("this is the user session "+userSession);
+            pageCounter =2;
+            dynamicText(pageCounter);
+            return "new_payment?faces-redirect=true";
+        } else {
+            pageCounter =1;
+            dynamicText(pageCounter);
+            return "new_account?faces-redirect=true";
+        }
+    }
 
-    public List allPayment() {
+    public List<Company> allPayment() {
         return null;
     }
     
-    public String newPayment(){
-        String usrname = SessionUtils.getUserName();
-        if (usrname != null){
-            return "new_payment?faces-redirect=true";
-        } else {
-            return saveNewAccount();
-        }
-    }
 
     public void dynamicText(int pageC) {
         currentStage = pageC;
         String cPage = null;
-        while (pageC < pageNavigation.length) {
             cPage = pageNavigation[pageC];
             String mapValue = pageMap.get(cPage);
-            setNextButton(mapValue);
             setCurrentForm(mapValue);
 
-        }
+        
 
     } 
     public String getEmail() {
