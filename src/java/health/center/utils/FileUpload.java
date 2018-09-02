@@ -27,7 +27,7 @@ public class FileUpload {
         try {
             if (Files.notExists(Paths.get(directory), LinkOption.NOFOLLOW_LINKS)) {
                 Files.createDirectories(Paths.get(directory));
-            }
+            } 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -36,18 +36,17 @@ public class FileUpload {
     public String upload(UploadedFile file, String username) {
         String fileType = "." + file.getContentType().split("/")[1];
         String fileName = null;
-        if (file.getContentType().contains("pdf") || file.getContentType().contains("image") && file.getSize() <= 2000000) {
-            File f = new File(directory + username + "_receipt" + fileType);
+        System.out.println("File size: " + file.getSize());
+        if ((file.getContentType().contains("pdf") || file.getContentType().contains("image")) && file.getSize() <= 2000000) {
             try {
-                if (!f.exists()) {
-                    f.createNewFile();
-                }
-                try(InputStream in = file.getInputstream(); OutputStream out = new FileOutputStream(f)){
+                fileName = getFileName(username + "_receipt" + fileType);
+                File f = new File(directory + fileName);
+                f.createNewFile();
+                try (InputStream in = file.getInputstream(); OutputStream out = new FileOutputStream(f)) {
                     int c;
-                    while((c = in.read()) != -1){
+                    while ((c = in.read()) != -1) {
                         out.write(c);
                     }
-                    fileName = username + "_receipt" + fileType;
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -57,7 +56,21 @@ public class FileUpload {
             return "error";
         }
     }
-    
-    public void download(){
+
+    public String getFileName(String fileName) throws IOException {
+        int counter = 0;
+        File file = new File(directory + fileName);
+        String name = fileName.split("\\.")[0];
+        String type = fileName.split("(?=\\.)")[1];
+        String newFileName = fileName;
+        while (file.exists()) {
+            newFileName = name + counter + type;
+            file = new File(directory + newFileName);
+            counter++;
+        }
+        return newFileName;
+    }
+
+    public void download() {
     }
 }

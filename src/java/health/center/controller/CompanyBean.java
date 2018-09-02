@@ -93,12 +93,16 @@ public class CompanyBean implements java.io.Serializable {
     }
 
     public void handleFileUpload(FileUploadEvent event) {
-        receipt = new FileUpload().upload(paymentReceipt, username);
+        receipt = new FileUpload().upload(event.getFile(), username);
         if (!receipt.equals("error")) {
             FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         } else {
+<<<<<<< HEAD
             FacesMessage message = new FacesMessage("Failed", "Receipt upload failed");
+=======
+            FacesMessage message = new FacesMessage("Receipt upload FAILED", "Ensure that file is either a pdf or image file, and file size is less than 2MB");
+>>>>>>> 03149f854a6c53ab8b31f193e3f11ed12d3d1aa1
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
@@ -107,17 +111,16 @@ public class CompanyBean implements java.io.Serializable {
     public String makePayment() {
         Company company = new Company();
         company.setCompanyId(SessionUtils.getCompanyId());
-//        System.out.println("Content type: " + paymentReceipt.getContentType());
-        System.out.println("Filename: " + paymentReceipt.getFileName());
-        if (!receipt.equals("error")) {
+        if (!receipt.equals("error") && receipt != null) {
             Payment payment = new health.center.model.Payment(company, fullName, title, signature, purposeOfPayment, paymentVoucherNum, amountInWords, amount, bank, receipt, month, dateOfPayment);
             companyService.makePayment(payment);
             pageCounter = 3;
             dynamicText(pageCounter);
             return "confirmation?faces-redirect=true";
         } else {
-            FacesMessage message = new FacesMessage("Receipt upload failed");
+            FacesMessage message = new FacesMessage("Error", "No receipt has been uploaded");
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            FacesContext.getCurrentInstance().addMessage(null, message);
             return "new_payment";
         }
     }
@@ -175,11 +178,16 @@ public class CompanyBean implements java.io.Serializable {
     }
 
     public String newPayment() {
+<<<<<<< HEAD
         HttpSession userSession = SessionUtils.getSession();
         if (userSession.getAttribute("username") != null) {
             System.out.println("this is the user session " + userSession);
             pageCounter = 2;
             dynamicText(pageCounter);
+=======
+        String usrname = SessionUtils.getUserName();
+        if (usrname != null) {
+>>>>>>> 03149f854a6c53ab8b31f193e3f11ed12d3d1aa1
             return "new_payment?faces-redirect=true";
         } else {
             pageCounter = 1;
@@ -201,6 +209,11 @@ public class CompanyBean implements java.io.Serializable {
 
     }
 
+<<<<<<< HEAD
+=======
+    }
+
+>>>>>>> 03149f854a6c53ab8b31f193e3f11ed12d3d1aa1
     public String getEmail() {
         return email;
     }

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/HealthCenter/web/all_receipt.xhtml</file>
             <file>file:/C:/HealthCenter/web/confirmation.xhtml</file>
             <file>file:/C:/HealthCenter/src/java/health/center/controller/CompanyBean.java</file>
@@ -21,6 +22,12 @@
             <file>file:/C:/HealthCenter/web/company_page.xhtml</file>
             <file>file:/C:/HealthCenter/web/html_to_pdf.xhtml</file>
             <file>file:/C:/HealthCenter/src/java/health/center/model/Payment.java</file>
+=======
+            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/HealthCenter/web/new_account.xhtml</file>
+            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/HealthCenter/web/new_payment.xhtml</file>
+            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/HealthCenter/src/java/health/center/controller/CompanyBean.java</file>
+            <file>file:/C:/Users/Kelechi/Documents/NetBeansProjects/HealthCenter/src/java/health/center/utils/FileUpload.java</file>
+>>>>>>> 03149f854a6c53ab8b31f193e3f11ed12d3d1aa1
         </group>
     </open-files>
 </project-private>
