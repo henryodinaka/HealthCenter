@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-5">
                         <h:form id="paymentReview">
-                            <p:dataGrid var="pay" value="#{companyBean.allPayment()}" columns="2"
+                            <p:dataGrid var="pay" value="#{companyBean.allPayment()}" columns="2" layout="grid"
                                         rows="8" paginator="true" id="movie-grid"
                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                         rowsPerPageTemplate="6,12,16">

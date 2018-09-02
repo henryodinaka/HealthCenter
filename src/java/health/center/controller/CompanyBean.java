@@ -98,11 +98,9 @@ public class CompanyBean implements java.io.Serializable {
             FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         } else {
-<<<<<<< HEAD
-            FacesMessage message = new FacesMessage("Failed", "Receipt upload failed");
-=======
+
             FacesMessage message = new FacesMessage("Receipt upload FAILED", "Ensure that file is either a pdf or image file, and file size is less than 2MB");
->>>>>>> 03149f854a6c53ab8b31f193e3f11ed12d3d1aa1
+
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
@@ -178,16 +176,13 @@ public class CompanyBean implements java.io.Serializable {
     }
 
     public String newPayment() {
-<<<<<<< HEAD
+
         HttpSession userSession = SessionUtils.getSession();
         if (userSession.getAttribute("username") != null) {
             System.out.println("this is the user session " + userSession);
             pageCounter = 2;
             dynamicText(pageCounter);
-=======
-        String usrname = SessionUtils.getUserName();
-        if (usrname != null) {
->>>>>>> 03149f854a6c53ab8b31f193e3f11ed12d3d1aa1
+
             return "new_payment?faces-redirect=true";
         } else {
             pageCounter = 1;
@@ -195,7 +190,7 @@ public class CompanyBean implements java.io.Serializable {
             return "new_account?faces-redirect=true";
         }
     }
-
+    
     public List<Company> allPayment() {
         return null;
     }
@@ -209,11 +204,10 @@ public class CompanyBean implements java.io.Serializable {
 
     }
 
-<<<<<<< HEAD
-=======
-    }
 
->>>>>>> 03149f854a6c53ab8b31f193e3f11ed12d3d1aa1
+    
+
+
     public String getEmail() {
         return email;
     }

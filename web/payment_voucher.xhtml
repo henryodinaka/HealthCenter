@@ -23,7 +23,7 @@
                     <span class="nav-link active" ><h:commandLink  value="Home" action="index?faces-redirect=true"/></span>
                     <span class="nav-link" ><h:commandLink value="Payment Voucher" action="payment_voucher?faces-redirect=true"/></span>
                     <span class="nav-link" ><h:commandLink value="Genres" action="message?faces-redirect=true"/></span> 
-                    <span class="nav-link nv-right" ><h:commandLink value="#{companyBean.loginControlBtn()}" action="login?faces-redirect=true"/></span>
+                    <span class="nav-link nv-right" ><h:commandLink action="#{companyBean.loginControlBtn()}" value="#{companyBean.loginBtn}"/></span>
                 </h:form>
             </div> 
         </div>
