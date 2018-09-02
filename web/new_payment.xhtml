@@ -81,18 +81,18 @@
                                 </div>
                             </div>
                             <div class="row foot-section">
-                                <div class="col-1 form-btn-div">
+                                <div class="col-2 form-btn-div">
                                     <span><p:commandButton action="index?faces-redirect=true" value="Cancel"/></span>
                                 </div> 
-                                <div class="col-9 form-btn-div">
-                                    <span id="btn-nex"  ><p:fileUpload fileUploadListener="#{companyBean.handleFileUpload}" value="#{companyBean.paymentReceipt}" mode="advanced" dragDropSupport="true"
+                                <div class="col-6 form-btn-div">
+                                    <span style=""  ><p:fileUpload fileUploadListener="#{companyBean.handleFileUpload}" value="#{companyBean.paymentReceipt}" mode="advanced" dragDropSupport="true"
                                                                         update="messages" sizeLimit="20000000" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"/></span>
                                     
                                 <p:growl id="messages" showDetail="true" />
                                 </div>
                                 <div class="col-1 form-btn-div">
 
-                                    <span id="btn-nex"  >
+                                    <span id="btn-next"  >
 
                                         <p:commandButton action="confirmation?faces-redirect=true" value="Proceed"/>
                                     </span>

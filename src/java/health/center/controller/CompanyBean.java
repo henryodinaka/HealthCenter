@@ -51,6 +51,7 @@ public class CompanyBean implements java.io.Serializable {
     private String nextButton = "New Payment";
     private String previousButtton = "Cancel";
     private final int totalStage;
+    private String loginBtn = "Login";
     private UploadedFile paymentReceipt;
     private final String pageNavigation[] = {"index", "new_account", "new_payment", "confirmation"};
     private final Map<String, String> pageMap;
@@ -83,8 +84,8 @@ public class CompanyBean implements java.io.Serializable {
         setPhone(company.getPhoneNumber());
         setEmail(company.getEmail());
     }
-    
-    public void clearCompanyDetails(){
+
+    public void clearCompanyDetails() {
         setPassword(null);
         setCompanyName(null);
         setPhone(null);
@@ -94,15 +95,15 @@ public class CompanyBean implements java.io.Serializable {
     public void handleFileUpload(FileUploadEvent event) {
         receipt = new FileUpload().upload(paymentReceipt, username);
         if (!receipt.equals("error")) {
-        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-        FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
         } else {
-            FacesMessage message = new FacesMessage("Failed","Receipt upload failed");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR); 
-        FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesMessage message = new FacesMessage("Failed", "Receipt upload failed");
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-    
+
     public String makePayment() {
         Company company = new Company();
         company.setCompanyId(SessionUtils.getCompanyId());
@@ -120,6 +121,7 @@ public class CompanyBean implements java.io.Serializable {
             return "new_payment";
         }
     }
+
     public String paymentDetails(int paymentId) {
         //this method will show more details about the the current payment beign viewed
         return "confirmation?faces-redirect=true";
@@ -143,26 +145,44 @@ public class CompanyBean implements java.io.Serializable {
         return "confrimation?faces-redirect=true";
     }
 
+    public String loginControlBtn() {
+        HttpSession session = SessionUtils.getSession();
+        if (session.getAttribute("username") != null) {
+            session.invalidate();
+            setLoginBtn("Login");
+            FacesMessage message = new FacesMessage("Log Out", "Log out successfully");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            return "index?faces-redirect=true";
+        } else {
+            return "login?faces-redirect=true";
+        }
+    }
+
     public String login() {
         try {
             Company company = companyService.login(username, password);
             SessionUtils.getSession().setAttribute("companyId", company.getCompanyId());
             SessionUtils.getSession().setAttribute("username", company.getUsername());
             setCompanyDetails(company);
+            setLoginBtn("Log Out");
         } catch (NullPointerException e) {
-            return "login";
+            return "login?faces-redirect=true";
         }
         return "company_dashboard?faces-redirect=true";
     }
-    public String newPayment(){
+
+    public void logout() {
+    }
+
+    public String newPayment() {
         HttpSession userSession = SessionUtils.getSession();
-        if (userSession.getAttribute("username") != null){
-            System.out.println("this is the user session "+userSession);
-            pageCounter =2;
+        if (userSession.getAttribute("username") != null) {
+            System.out.println("this is the user session " + userSession);
+            pageCounter = 2;
             dynamicText(pageCounter);
             return "new_payment?faces-redirect=true";
         } else {
-            pageCounter =1;
+            pageCounter = 1;
             dynamicText(pageCounter);
             return "new_account?faces-redirect=true";
         }
@@ -171,18 +191,16 @@ public class CompanyBean implements java.io.Serializable {
     public List<Company> allPayment() {
         return null;
     }
-    
 
     public void dynamicText(int pageC) {
         currentStage = pageC;
         String cPage = null;
-            cPage = pageNavigation[pageC];
-            String mapValue = pageMap.get(cPage);
-            setCurrentForm(mapValue);
+        cPage = pageNavigation[pageC];
+        String mapValue = pageMap.get(cPage);
+        setCurrentForm(mapValue);
 
-        
+    }
 
-    } 
     public String getEmail() {
         return email;
     }
@@ -400,6 +418,14 @@ public class CompanyBean implements java.io.Serializable {
 
     public void setAllReceipt(List<Payment> allReceipt) {
         this.allReceipt = allReceipt;
+    }
+
+    public String getLoginBtn() {
+        return loginBtn;
+    }
+
+    public void setLoginBtn(String loginBtn) {
+        this.loginBtn = loginBtn;
     }
 
 }
