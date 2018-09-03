@@ -62,13 +62,12 @@ public class FileUpload {
         File file = new File(directory + fileName);
         String name = fileName.split("\\.")[0];
         String type = fileName.split("(?=\\.)")[1];
-        String newFileName = fileName;
         while (file.exists()) {
-            newFileName = name + counter + type;
-            file = new File(directory + newFileName);
+            fileName = name + counter + type;
+            file = new File(directory + fileName);
             counter++;
         }
-        return newFileName;
+        return fileName;
     }
 
     public void download() {

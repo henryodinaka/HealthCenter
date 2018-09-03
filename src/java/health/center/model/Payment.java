@@ -32,7 +32,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paymentId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Company.class)
+    @ManyToOne(targetEntity = Company.class)
     @JoinColumn(name = "companyId",foreignKey = @ForeignKey (name= "FK_Payment_Company"))
     private Company companyId;
 
@@ -66,12 +66,14 @@ public class Payment {
     @Column(nullable = false)
     private Date month;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date dateOfPayment;
 
+    @Column
     @CreationTimestamp
     private Date created;
 
+    @Column
     @UpdateTimestamp
     private Date modified;
 

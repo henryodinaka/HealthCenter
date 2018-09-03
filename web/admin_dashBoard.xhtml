@@ -14,43 +14,35 @@
         
         <ui:composition template="base_template.xhtml">
             <ui:define name="body">
-        <h1>Welcome <h:outputText value="#{companyBean.companyName}"/></h1>
+                <h1>Welcome <h:outputText value="#{AdminBean.fullName}"/></h1>
         <div class="row">
             <div class="col-5">
                 <p>
-                    This account was created on the <h:outputText value="#{companyBean.createdDate}"/>
-                     with the following details;
+                    Admin Name: <h:outputText value="#{AdminBean.fullName}"/>
                 </p>
                 <p>
-                    Admin Name: <h:outputText value="#{companyBean.companyName}"/>
-                </p>
-                <p>
-                    Username : <h:outputText value="#{companyBean.username}"/>
+                    Username : <h:outputText value="#{AdminBean.username}"/>
                 </p> 
             </div>
             <div class="col-5">
                           
 
             <h:form id="paymentReview">
-                <p:dataGrid var="company" value="#{companyBean.allReceipt()}" columns="4" layout="grid"
+                <p:dataGrid var="company" value="#{companyBean.allCompanies}" columns="4"
                             rows="8" paginator="true" id="movie-grid"
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rowsPerPageTemplate="6,12,16">
 
                     <f:facet name="header">
-                        <p class="caption-index">The List of all the payments</p>
+                        <p class="caption-index">The List of all Companies</p>
                     </f:facet>
 
-                    <p:panel header="#{companyBean.month}" style="text-align:center">
+                    <p:panel header="#{company.companyName}" style="text-align:center">
                         <h:panelGrid columns="1" style="width:100%">
-                            <p:graphicImage name="ReceiptURI"/> 
-
-                            Company Name :<h:outputText value="#{companyBean.fullName}" />
-
-                            Username :<h:outputText value="#{companyBean.username}" />
-
-                            <h:commandButton value="More" action="#{companyBean.oneCompanyReceipt(company.companyId)}" title="View Detail">
-                            </h:commandButton>
+                            <h:outputText value="Company Name: #{company.companyName}" />
+                            <h:outputText value="Company Email: #{company.email}" />
+                            <h:outputText value="Username: #{company.username}" />
+                            <h:commandButton value="View Receipts" action="#{AdminBean.viewReceipts(company)}"/>
                         </h:panelGrid>
                     </p:panel>
 

@@ -19,4 +19,6 @@ public interface CompanyService {
     public List<Company> retrieveAll();
     
     public void makePayment(Payment payment);
+    
+    public List<Payment> getAllPayments(Integer companyId);
 }
