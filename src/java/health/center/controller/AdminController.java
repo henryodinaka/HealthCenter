@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package health.center.controller;
 
 import health.center.model.Administrator;
@@ -19,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Blaccop Group
  */
-@Named("AdminBean")
+@Named("adminBean")
 @SessionScoped
 public class AdminController implements java.io.Serializable {
 
@@ -39,7 +34,7 @@ public class AdminController implements java.io.Serializable {
     public String createAccount() {
         Administrator admin = new Administrator(username, fullName, password);
         adminService.createAccount(admin);
-        return "adminLogin?faces-redirect=true";
+        return "login?faces-redirect=true";
     }
     
     public String login(){
@@ -48,7 +43,7 @@ public class AdminController implements java.io.Serializable {
             setAdmin(admin);
             return "admin_dashBoard?faces-redirect=true";
         } catch (NullPointerException e){
-            return "adminLogin";
+            return "login";
         }
     }
     

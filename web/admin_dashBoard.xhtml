@@ -21,28 +21,51 @@
                     Admin Name: <h:outputText value="#{AdminBean.fullName}"/>
                 </p>
                 <p>
+<<<<<<< HEAD
                     Username : <h:outputText value="#{AdminBean.username}"/>
+=======
+                   Admin Username : <h:outputText value="#{companyBean.username}"/>
+>>>>>>> f298858f88dc31d6d6485509a40cd52948bb2690
                 </p> 
             </div>
             <div class="col-5">
                           
 
             <h:form id="paymentReview">
+<<<<<<< HEAD
                 <p:dataGrid var="company" value="#{companyBean.allCompanies}" columns="4"
+=======
+                <p:dataGrid var="company" value="#{companyBean.allCompany()}" columns="4" layout="grid"
+>>>>>>> f298858f88dc31d6d6485509a40cd52948bb2690
                             rows="8" paginator="true" id="movie-grid"
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rowsPerPageTemplate="6,12,16">
 
                     <f:facet name="header">
+<<<<<<< HEAD
                         <p class="caption-index">The List of all Companies</p>
+=======
+                        <p class="caption-index">The List of all the registered companies</p>
+>>>>>>> f298858f88dc31d6d6485509a40cd52948bb2690
                     </f:facet>
 
                     <p:panel header="#{company.companyName}" style="text-align:center">
                         <h:panelGrid columns="1" style="width:100%">
+<<<<<<< HEAD
                             <h:outputText value="Company Name: #{company.companyName}" />
                             <h:outputText value="Company Email: #{company.email}" />
                             <h:outputText value="Username: #{company.username}" />
                             <h:commandButton value="View Receipts" action="#{AdminBean.viewReceipts(company)}"/>
+=======
+                            <p:graphicImage name="ReceiptURI"/> 
+
+                            Company Name :<h:outputText value="#{companyBean.companyName}" />
+
+                            Username :<h:outputText value="#{companyBean.username}" />
+
+                            <h:commandButton value="More" action="#{companyBean.oneCompanyReceipt(company.companyId)}" title="View Detail">
+                            </h:commandButton>
+>>>>>>> f298858f88dc31d6d6485509a40cd52948bb2690
                         </h:panelGrid>
                     </p:panel>
 

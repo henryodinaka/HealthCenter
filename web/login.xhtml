@@ -19,20 +19,35 @@
                 <h:form id="login-form">
                     <span class="nav-link " title="Home"><h:commandLink action="index?faces-redirect=true" value="Home"/></span>
                     <span class="nav-link " ><h:commandLink class="active" value="About" action="about?faces-redirect=true"/></span>
-                    <span class="nav-link" ><p:inputText a:autofocus ="true" value="#{companyBean.username}" placeholder="Username" /></span> 
-
-                    <span class="nav-link" ><p:password  value="#{companyBean.password}" placeholder="Password"/></span> 
-                    <span class="nav-link">
-                        <h:commandButton class="dropbtn" action="#{companyBean.login()}" value="Login"/>
-                    </span> 
                 </h:form>
             </div> 
         </div>
         <div id="wrapper-other"> 
             <div class="form-tag-div">
-                
+
                 <h:form id="regForm">
-                    <p class="form-caption"><h1><h:commandLink action="new_account?faces-redirect=true" value="Create Account for your Company"/> </h1></p>
+                    <div id="form-content" class="row">
+                        <div class="col-12">
+                            <div style=" position: relative;margin-bottom: 1em;left: 20px; width: 60%;height: 2em;border-radius: .5em;">
+                                <span class="nav-link" ><p:inputText a:autofocus ="true" value="#{companyBean.username}" placeholder="Username" /></span> 
+                            </div>
+                            <div style=" position: relative;margin-bottom: 1em;left: 20px; width: 90%;height: 2em;border-radius: .5em;">
+                                <span class="nav-link" ><p:password  value="#{companyBean.password}" placeholder="Password"/></span> </div>
+                                <div >
+                                <p:outputLabel for="userType" value="Sign in as"/>
+                                <p:selectOneMenu value="#{companyBean.userType}" id="userType" required="true" requiredMessage="How do we Address YOu?">
+                                    <f:selectItem itemValue="U" itemLabel="User"/>
+                                    <f:selectItem itemValue="A" itemLabel="Admin"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div>
+                                <span class="nav-link">
+                                    <p:commandButton class="dropbtn" action="#{companyBean.loginBtn()}" value="Login"/>
+                                </span> 
+                            </div>
+                            <p><h1><p:commandLink action="new_account?faces-redirect=true" value="Create Account"/> </h1></p>
+                        </div>
+                    </div>
                 </h:form>
             </div> 
         </div>  
