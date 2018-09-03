@@ -31,6 +31,14 @@ public class CompanyServiceImpl implements CompanyService{
                 .setParameter("password", password)
                 .uniqueResult();
     }
+    
+//    public Admin loginAdmin(String username, String password){
+//        return (Admin) sessionFactory.getCurrentSession()
+//                .createQuery("FROM Admin WHERE username = :username AND password = :password")
+//                .setParameter("username", username)
+//                .setParameter("password", password)
+//                .uniqueResult();
+//    }
 
     @Override
     public Company retrieveOne() {
@@ -47,6 +55,11 @@ public class CompanyServiceImpl implements CompanyService{
         sessionFactory.getCurrentSession().save(payment);
     }
     
-    
-    
+    @Override
+    public List<Payment> getAllPayments(Integer companyId){
+        return sessionFactory.getCurrentSession()
+                .createQuery("FROM Payment WHERE COMPANYID = :companyId")
+                .setParameter("companyId", companyId)
+                .list();
+    }
 }

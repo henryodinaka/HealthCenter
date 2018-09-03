@@ -24,7 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ReceiptServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String path = null;
+        String[] url = request.getRequestURI().split("/");
+        String filename = url[url.length - 1];
+        String path = System.getProperty("user.home") + "\\Receipts\\" + filename;
         try (InputStream in = new FileInputStream(new File(path)); OutputStream out = response.getOutputStream()) {
             int c;
             while ((c = in.read()) != -1) {

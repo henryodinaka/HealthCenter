@@ -41,9 +41,7 @@ public class Company implements java.io.Serializable {
     @Column(nullable = false)
     private String email;
     
-    @OneToMany(fetch = FetchType.LAZY, 
-            targetEntity = Payment.class,
-            mappedBy = "companyId")
+    @OneToMany(targetEntity = Payment.class, mappedBy = "companyId")
     private List<Payment> payments ;
 
     @CreationTimestamp

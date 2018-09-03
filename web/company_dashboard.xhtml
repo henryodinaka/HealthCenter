@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-5">
                         <h:form id="paymentReview">
-                            <p:dataGrid var="pay" value="#{companyBean.allPayment()}" columns="2" layout="grid"
+                            <p:dataGrid var="payment" value="#{companyBean.allPayments}" columns="2"
                                         rows="8" paginator="true" id="movie-grid"
                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                         rowsPerPageTemplate="6,12,16">
@@ -48,16 +48,11 @@
                                     <p class="caption-index">The List of all the payments</p>
                                 </f:facet>
 
-                                <p:panel header="#{companyBean.month}" style="text-align:center">
+                                <p:panel header="#{payment.receipt}" style="text-align:center">
                                     <h:panelGrid columns="1" style="width:100%">
-                                        <p:graphicImage name="ReceiptURI"/> 
-
-                                        Paid By :<h:outputText value="#{companyBean.fullName}" />
-
-                                        Amount :<h:outputText value="#{companyBean.amount}" />
-
-                                        <h:commandButton value="More" action="#{companyBean.paymentDetails(pay.paymenId)}" title="View Detail">
-                                        </h:commandButton>
+                                        <h:outputText value="Paid By : #{payment.fullName}" />
+                                        <h:outputText value="Amount : #{payment.amount}" />
+                                        <h:commandButton value="View Payment Details" action="#{companyBean.paymentDetails(payment)}"/>
                                     </h:panelGrid>
                                 </p:panel>
 
@@ -66,7 +61,7 @@
                     </div>
                 </div>
                 <div>
-                    <p:commandButton value="Make Payment" action="new_payment?faces-redirect=true"/>
+                    <p:commandButton value="Make Payment" action="#{companyBean.newPayment()}"/>
                 </div>
             </ui:define>
         </ui:composition>
