@@ -33,6 +33,7 @@ public class CompanyBean implements java.io.Serializable {
     private String password;
     private String password2;
     private String title;
+    private String userType;
     private String companyName;
     private String fullName;
     private boolean signature;
@@ -49,8 +50,8 @@ public class CompanyBean implements java.io.Serializable {
     private String currentForm;
     private int currentStage = 1;
     private int pageCounter = 1;
-    private String nextButton = "New Payment";
-    private String previousButtton = "Cancel";
+//    private String nextButton = "New Payment";
+//    private String previousButtton = "Cancel";
     private final int totalStage;
     private String loginBtn = "Login";
     private UploadedFile paymentReceipt;
@@ -93,7 +94,7 @@ public class CompanyBean implements java.io.Serializable {
         setCompanyName(null);
         setPhone(null);
         setEmail(null);
-        
+
     }
 
     public void handleFileUpload(FileUploadEvent event) {
@@ -109,7 +110,7 @@ public class CompanyBean implements java.io.Serializable {
     }
 
     public String proceedToConfirmation() {
-        if (receipt != null && !receipt.equals("error") ) {
+        if (receipt != null && !receipt.equals("error")) {
             Company company = new Company();
             company.setCompanyId(SessionUtils.getCompanyId());
             Payment companyPayment = new Payment(company, fullName, title, signature, purposeOfPayment, paymentVoucherNum, amountInWords, amount, bank, receipt, month, dateOfPayment);
@@ -132,17 +133,29 @@ public class CompanyBean implements java.io.Serializable {
         dynamicText(pageCounter);
         return "company_dashboard?faces-redirect=true";
     }
-    
-    public String newPayment(){
+
+    public String newPayment() {
         clearPaymentFields();
-        return "new_payment?faces-redirect=true";
+
+        HttpSession userSession = SessionUtils.getSession();
+        if (userSession.getAttribute("username") != null) {
+            System.out.println("this is the user session " + userSession);
+            pageCounter = 2;
+            dynamicText(pageCounter);
+
+            return "new_payment?faces-redirect=true";
+        } else {
+            pageCounter = 1;
+            dynamicText(pageCounter);
+            return "new_account?faces-redirect=true";
+        }
     }
-    
-    public void setPayment(Payment payment){
+
+    public void setPayment(Payment payment) {
         this.payment = payment;
     }
-    
-    public void clearPaymentFields(){
+
+    public void clearPaymentFields() {
         setFullName(null);
         setTitle(null);
         setPurposeOfPayment(null);
@@ -165,12 +178,8 @@ public class CompanyBean implements java.io.Serializable {
         setCreatedDate(payment.getCreated());
         setModifiedDate(payment.getModified());
         setTitle(payment.getTitle());
-        
-        /**
-         * @Henry please put in the name of the web page where the user
-         * will view the details of the payment he selects
-         */
-        return "#";
+
+        return "payment_details?faces-redirect=true";
     }
 
     public String oneCompanyReceipt(int companyId) {
@@ -204,6 +213,16 @@ public class CompanyBean implements java.io.Serializable {
         }
     }
 
+    public void loginBtn() {
+        switch(userType){
+            case "U":login();
+            break;
+            case "A": new AdminController().login();
+            break;
+            default : login();
+        }
+    }
+
     public String login() {
         try {
             Company company = companyService.login(username, password);
@@ -212,10 +231,10 @@ public class CompanyBean implements java.io.Serializable {
             setCompanyDetails(company);
             setCompany(company);
             setLoginBtn("Log Out");
+            return "company_dashboard?faces-redirect=true";
         } catch (NullPointerException e) {
             return "login?faces-redirect=true";
         }
-        return "company_dashboard?faces-redirect=true";
     }
 
     public String logout() {
@@ -227,22 +246,19 @@ public class CompanyBean implements java.io.Serializable {
     public List<Payment> getAllPayments() {
         return companyService.getAllPayments(SessionUtils.getCompanyId());
     }
-    
-<<<<<<< HEAD
-    public List<Company> getAllCompanies(){
+
+    public List<Company> getAllCompanies() {
         return companyService.retrieveAll();
     }
-    
-=======
+
     public List<Payment> allPayment() {
         return null;
     }
 
-    
     public List<Company> allCompany() {
         return null;
     }
->>>>>>> f298858f88dc31d6d6485509a40cd52948bb2690
+
     public void dynamicText(int pageC) {
         currentStage = pageC;
         String cPage = null;
@@ -309,6 +325,14 @@ public class CompanyBean implements java.io.Serializable {
 
     public String getPurposeOfPayment() {
         return purposeOfPayment;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public void setPurposeOfPayment(String purposeOfPayment) {
@@ -419,22 +443,21 @@ public class CompanyBean implements java.io.Serializable {
         this.companyService = companyService;
     }
 
-    public String getNextButton() {
-        return nextButton;
-    }
-
-    public void setNextButton(String nextButton) {
-        this.nextButton = nextButton;
-    }
-
-    public String getPreviousButtton() {
-        return previousButtton;
-    }
-
-    public void setPreviousButtton(String previousButtton) {
-        this.previousButtton = previousButtton;
-    }
-
+//    public String getNextButton() {
+//        return nextButton;
+//    }
+//
+//    public void setNextButton(String nextButton) {
+//        this.nextButton = nextButton;
+//    }
+//
+//    public String getPreviousButtton() {
+//        return previousButtton;
+//    }
+//
+//    public void setPreviousButtton(String previousButtton) {
+//        this.previousButtton = previousButtton;
+//    }
 //    public int getPageCounter() {
 //        return pageCounter;
 //    }

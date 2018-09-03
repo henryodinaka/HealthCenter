@@ -39,7 +39,7 @@ public class AuthorizationFilter implements Filter {
 //            if (reqURI.contains("/index.xhtml")
 //                    || reqURI.contains("/login.xhtml")
 //                    || reqURI.contains("/new_account.xhtml")
-//                    || reqURI.contains("/html_to_pdf.xhtml")
+//                    || reqURI.contains("/admin_reg.xhtml")
 //                    || (ses != null && ses.getAttribute("username") != null)
 //                    || reqURI.contains("/public/")
 //                    || reqURI.contains("javax.faces.resource")) {

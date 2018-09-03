@@ -21,7 +21,7 @@
             <div id="navbar">
                 <h:form>
                     <span class="nav-link active" ><h:commandLink  value="Home" action="index?faces-redirect=true"/></span>
-                    <span class="nav-link" ><h:commandLink value="Payment Voucher" action="payment_voucher?faces-redirect=true"/></span>
+                    <span class="nav-link" ><h:commandLink value="Payment Voucher" action="#{companyBean.newPayment()}"/></span>
                     <span class="nav-link" ><h:commandLink value="Genres" action="message?faces-redirect=true"/></span> 
                     <span class="nav-link nv-right" ><h:commandLink action="#{companyBean.loginControlBtn()}" value="#{companyBean.loginBtn}"/></span>
                 </h:form>
