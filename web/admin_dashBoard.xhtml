@@ -22,30 +22,27 @@
                      with the following details;
                 </p>
                 <p>
-                    Admin Name: <h:outputText value="#{companyBean.companyName}"/>
-                </p>
-                <p>
-                    Username : <h:outputText value="#{companyBean.username}"/>
+                   Admin Username : <h:outputText value="#{companyBean.username}"/>
                 </p> 
             </div>
             <div class="col-5">
                           
 
             <h:form id="paymentReview">
-                <p:dataGrid var="company" value="#{companyBean.allReceipt()}" columns="4" layout="grid"
+                <p:dataGrid var="company" value="#{companyBean.allCompany()}" columns="4" layout="grid"
                             rows="8" paginator="true" id="movie-grid"
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rowsPerPageTemplate="6,12,16">
 
                     <f:facet name="header">
-                        <p class="caption-index">The List of all the payments</p>
+                        <p class="caption-index">The List of all the registered companies</p>
                     </f:facet>
 
                     <p:panel header="#{companyBean.month}" style="text-align:center">
                         <h:panelGrid columns="1" style="width:100%">
                             <p:graphicImage name="ReceiptURI"/> 
 
-                            Company Name :<h:outputText value="#{companyBean.fullName}" />
+                            Company Name :<h:outputText value="#{companyBean.companyName}" />
 
                             Username :<h:outputText value="#{companyBean.username}" />
 

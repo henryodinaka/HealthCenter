@@ -130,7 +130,7 @@ public class CompanyBean implements java.io.Serializable {
 
     public String oneCompanyReceipt(int companyId) {
 //        The list of all the receipts from the db for a particular company should asigned to allReceipt variabe
-        return "all_receipt?faces-redirect=true";
+        return "all_payment?faces-redirect=true";
     }
 
     public String receiptToPdf(int paymentId) {
@@ -191,10 +191,14 @@ public class CompanyBean implements java.io.Serializable {
         }
     }
     
-    public List<Company> allPayment() {
+    public List<Payment> allPayment() {
         return null;
     }
 
+    
+    public List<Company> allCompany() {
+        return null;
+    }
     public void dynamicText(int pageC) {
         currentStage = pageC;
         String cPage = null;
