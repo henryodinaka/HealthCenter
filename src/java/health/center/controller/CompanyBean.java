@@ -249,7 +249,7 @@ public class CompanyBean implements java.io.Serializable {
             AdminController adminBean = (AdminController) FacesContext.getCurrentInstance().getApplication().createValueBinding("#{adminBean}").getValue(FacesContext.getCurrentInstance());
             adminBean.setAdmin(admin);
             setLoginBtn("Log Out");
-            return "admin_dashBoard?faces-redirect=true";
+            return "admin_dashboard?faces-redirect=true";
         } catch (NullPointerException e) {
             return "login?faces-redirect=true";
         }
