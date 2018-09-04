@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Kelechi
  */
-@WebServlet(name = "ReceiptServlet", urlPatterns = {"/user/receipt/*"})
+@WebServlet(name = "ReceiptServlet", urlPatterns = {"/company/receipt/*"})
 public class ReceiptServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

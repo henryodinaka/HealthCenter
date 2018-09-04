@@ -12,30 +12,30 @@
             <ui:define name="body">
                 <div class="row">
                     <div class="col-4">
-                        <h2><h:outputText value="Company: #{AdminBean.company.companyName}"/> </h2>
+                        <h2><h:outputText value="Company: #{adminBean.company.companyName}"/> </h2>
 
                         <p>
-                            <h2><h:outputText value="Email Address: #{AdminBean.company.email}"/></h2>
+                            <h2><h:outputText value="Email Address: #{adminBean.company.email}"/></h2>
                         </p>
                     </div>
                     <div class="col-7">
 
-                        <h:dataTable id="dTable" value="#{AdminBean.companyReceipts}" var="receipt" cellpadding="10" cellspacing="10">
+                        <h:dataTable id="dTable" value="#{adminBean.companyPayments}" var="payment" cellpadding="10" cellspacing="10">
                             <h:column>
                                 <f:facet name = "header">Amount:</f:facet>
-                                <h:outputText value="#{receipt.amount}"/>
+                                <h:outputText value="#{payment.amount}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name = "header">Voucher Number</f:facet>
-                                <h:outputText value="#{receipt.paymentVoucherNum}"/>
+                                <h:outputText value="#{payment.paymentVoucherNum}"/>
                             </h:column> 
                             <h:column>
                                 <f:facet name = "header">Payment Date</f:facet>
-                                <h:outputText value="#{receipt.month}"/>
+                                <h:outputText value="#{payment.month}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">More Details</f:facet>
-                                <h:form><h:commandButton value="More Details" action="#" /></h:form>
+                                <h:form><h:commandButton value="More Details" action="#{adminBean.viewPayment(payment)}" /></h:form>
                             </h:column>
 
                         </h:dataTable>

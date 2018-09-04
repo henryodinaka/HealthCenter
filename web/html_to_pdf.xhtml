@@ -19,15 +19,27 @@
                                     <button type="button" id="uName" onclick="document.getElementById('message-div').style.display = 'block'" style="width:auto;">View Proof Of Payment</button> 
                                 </p>
                             </div>
-                            <div class="col-2">
-                                <p>
-                                    <h:commandLink value="Print File" action="#{companyBean.printReceipt()}"/>
-                                </p>
-                            </div>
+                            <h:form>
+                                <div class="col-2">
+                                    <p>
+                                        <h:commandLink value="Print File" action="#{adminBean.printPayment()}"/>
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <p>
+                                        <h:commandButton class="form-btn" value="Download File" action="#{adminBean.downloadPayment()}"/>
+                                    </p>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div>
+                            <h:form>
+                                <h:message for="" showDetail="true" showSummary="true" style="font-family: monospace; font-size: 20px; color: navy; background-color: cadetblue"/>
+                            </h:form>
                         </div>
                         <div class="row">
                             <h1>GOVERNMENT OF RIVERS STATE OF NIGERIA </h1>
-                            <h3>(RIVERS STATE PRIMARY HEALTH CARE MANAGEMENT BOARD</h3>
+                            <h3>(RIVERS STATE PRIMARY HEALTH CARE MANAGEMENT BOARD)</h3>
                         </div>
                         <div class="row">
                             <div class="col-5">
@@ -45,8 +57,8 @@
                                     <tbody>
                                         <tr>
                                             <td>Seen</td>
-                                            <td>Seen</td>
-                                            <td>Seen</td>
+                                            <td>#{adminBean.payment.month}</td>
+                                            <td>#{adminBean.payment.paymentVoucherNum}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -68,24 +80,24 @@
                                     </thead>
                                     <tbody>
                                         <td>
-                                            <h:outputText value="#{companyBean.dateOfPayment}"/>
+                                            <h:outputText value="#{adminBean.payment.created}"/>
                                         </td>
                                         <td>
-                                            <h:outputText value="#{companyBean.purposeOfPayment}"/>
+                                            <h:outputText value="#{adminBean.payment.purposeOfPayment}"/>
                                         </td>
                                         <td>
-                                            <h:outputText value="#{companyBean.amount}"/>
+                                            <h:outputText value="Naira"/>
                                         </td>
                                         <td>
-                                            <h:outputText value="#{companyBean.amount}"/>
+                                            <h:outputText value="#{adminBean.payment.amount}"/>
                                         </td>
                                     </tbody>
                                     <tfoot>
                                         <td>
-                                            Financial Authority <h:outputText value="#{companyBean.bank}"/>
+                                            Financial Authority: <h:outputText value="#{adminBean.payment.bank.toUpperCase()}"/>
                                         </td>
                                         <td>
-                                            Total <h:outputText value="#{companyBean.amount}"/> 
+                                            Total: <h:outputText value="#{adminBean.payment.amount}"/> 
                                         </td>
                                     </tfoot>
                                 </table>
@@ -94,7 +106,7 @@
                         <div class="row">
                             <div class="col-10">
                                 <p>
-                                    I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of <h:outputText value="#{companyBean.amountInWords}"/> can be paid under the sub-head quoted 
+                                    I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of <h:outputText value="#{adminBean.payment.amountInWords}"/> can be paid under the sub-head quoted 
                                 </p>
                             </div>
                         </div>
@@ -103,12 +115,12 @@
                                 Place..........................20......
                             </div>
                             <div class="col-5">
-                                Signature....<h:outputText value="#{companyBean.signature}"/>
+                                Signature: <h:outputText value="#{adminBean.payment.signature}"/>
                                 <p>
-                                    Name(Typed).....<h:outputText value="#{companyBean.fullName}"/>
+                                    Name: <h:outputText value="#{adminBean.payment.fullName.toUpperCase()}"/>
                                 </p>
                                 <p>
-                                    Title.....<h:outputText value="#{companyBean.fullName}"/><br/>
+                                    Title: <h:outputText value="#{adminBean.payment.title.toUpperCase()}"/><br/>
                                     <span>
                                         <i>Officer Controlling Experience</i>
                                     </span>
@@ -116,7 +128,7 @@
                             </div>
                         </div>
                         <p>
-                            RECEIVED this ..............day of .........20.......in payment of the above, the sum of .................
+                            RECEIVED this #{adminBean.payment.month} in payment of the above, the sum of #{adminBean.payment.amountInWords.toUpperCase()}
                         </p>
                         <div class="row">
                             <div class="col-5">
@@ -129,6 +141,11 @@
                         </div>
                         <p>*The certificate must be made to apply to the circumstances of the payment</p>
 
+                    </div>
+                    <!--@Henry please arrange the position of the iframe how you see fit
+                        Note: It displays the uploaded receipt for the particular payment-->
+                    <div>
+                        <iframe id="message-div" src="/HealthCenter/faces/company/receipt/#{companyBean.receipt}" style="width: 700px; height: 500px;"/>
                     </div>
                 </div>
             </ui:define>

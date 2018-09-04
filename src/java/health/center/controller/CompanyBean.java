@@ -1,8 +1,10 @@
 package health.center.controller;
 
+import health.center.model.Administrator;
 import health.center.model.Company;
 import health.center.service.CompanyService;
 import health.center.model.Payment;
+import health.center.service.AdminService;
 import health.center.utils.FileUpload;
 import health.center.utils.SessionUtils;
 import java.util.Date;
@@ -60,7 +62,9 @@ public class CompanyBean implements java.io.Serializable {
     private Payment payment;
     private Company company;
     @Autowired
-    CompanyService companyService;
+    private CompanyService companyService;
+    @Autowired
+    private AdminService adminService;
 
     public CompanyBean() {
         this.pageMap = new HashMap<>();
@@ -178,6 +182,7 @@ public class CompanyBean implements java.io.Serializable {
         setCreatedDate(payment.getCreated());
         setModifiedDate(payment.getModified());
         setTitle(payment.getTitle());
+        setReceipt(payment.getReceipt());
 
         return "payment_details?faces-redirect=true";
     }
@@ -213,17 +218,18 @@ public class CompanyBean implements java.io.Serializable {
         }
     }
 
-    public void loginBtn() {
+    public String loginBtn() {
         switch(userType){
-            case "U":login();
-            break;
-            case "A": new AdminController().login();
-            break;
-            default : login();
+            case "U": 
+                return companyLogin();
+            case "A": 
+                return adminLogin();
+            default :
+                return "login";
         }
     }
 
-    public String login() {
+    public String companyLogin() {
         try {
             Company company = companyService.login(username, password);
             SessionUtils.getSession().setAttribute("companyId", company.getCompanyId());
@@ -232,6 +238,18 @@ public class CompanyBean implements java.io.Serializable {
             setCompany(company);
             setLoginBtn("Log Out");
             return "company_dashboard?faces-redirect=true";
+        } catch (NullPointerException e) {
+            return "login?faces-redirect=true";
+        }
+    }
+    
+    public String adminLogin() {
+        try {
+            Administrator admin = adminService.login(username, password);
+            AdminController adminBean = (AdminController) FacesContext.getCurrentInstance().getApplication().createValueBinding("#{adminBean}").getValue(FacesContext.getCurrentInstance());
+            adminBean.setAdmin(admin);
+            setLoginBtn("Log Out");
+            return "admin_dashBoard?faces-redirect=true";
         } catch (NullPointerException e) {
             return "login?faces-redirect=true";
         }
@@ -249,10 +267,6 @@ public class CompanyBean implements java.io.Serializable {
 
     public List<Company> getAllCompanies() {
         return companyService.retrieveAll();
-    }
-
-    public List<Payment> allPayment() {
-        return null;
     }
 
     public List<Company> allCompany() {

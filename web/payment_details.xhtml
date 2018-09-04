@@ -8,7 +8,7 @@
         <title>Payment Details</title>
     </h:head>
     <h:body>
-       <div id="container" class="col-12">
+        <div id="container" class="col-12">
             <div id="main-container">
                 <ui:composition template="base_template.xhtml">
                     <ui:define name="body">
@@ -69,16 +69,21 @@
                                     </div> 
                                 </div>
                             </div>
-                        <div class="row foot-section">
-                            <div class="col-4 form-btn-div">
-                                <span><p:commandButton action="all_payment?faces-redirect=true" value="&lt;&lt;&lt; Back"/></span>
-                            </div> 
+                            <div class="row foot-section">
                                 <div class="col-4 form-btn-div">
-                              <p>
-                                    <button type="button" id="uName" onclick="document.getElementById('message-div').style.display = 'block'" style="width:auto;">View Payment Receipt</button> 
-                                </p>
+                                    <span><p:commandButton action="all_payment?faces-redirect=true" value="&lt;&lt;&lt; Back"/></span>
+                                </div> 
+                                <div class="col-4 form-btn-div">
+                                    <p>
+                                        <button type="button" id="uName" onclick="document.getElementById('message-div').style.display = 'block'" style="width:auto;">View Payment Receipt</button> 
+                                    </p>
                                 </div>
-                        </div>
+                                <!--@Henry please arrange the position of the iframe how you see fit
+                                Note: It displays the uploaded receipt for the particular payment-->
+                                <div>
+                                    <iframe id="message-div" src="/HealthCenter/faces/company/receipt/#{companyBean.receipt}" style="width: 700px; height: 500px;"/>
+                                </div>
+                            </div>
                         </h:form>
                     </ui:define>
                 </ui:composition>

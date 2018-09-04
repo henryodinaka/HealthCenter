@@ -12,7 +12,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.borders.SolidBorder;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
@@ -33,7 +32,7 @@ public class PdfWriterClass {
 
     private final Payment payment;
     private final String path = System.getProperty("user.home") + "\\Payments\\";
-
+    private final String[] months = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
     public PdfWriterClass(Payment payment) {
         this.payment = payment;
         try {
@@ -47,10 +46,11 @@ public class PdfWriterClass {
     }
 
     public void writeToFile() throws IOException {
-        PdfDocument doc = new PdfDocument(new PdfWriter("D:\\payment.pdf"));
+        PdfDocument doc = new PdfDocument(new PdfWriter(path + payment.getReceipt()));
         PdfFont boldfont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
         PdfFont normalfont = PdfFontFactory.createFont(StandardFonts.HELVETICA);
-
+        final int year = payment.getMonth().getYear() + 1900;
+        
         try (Document document = new Document(doc)) {
             document.add(new Paragraph().add("GOVERNMENT OF RIVERS STATE OF NIGERIA")
                     .setFont(boldfont).setFontSize(20));
@@ -71,8 +71,8 @@ public class PdfWriterClass {
                                     .addHeaderCell(new Cell().add(new Paragraph("Month").setFont(boldfont).setTextAlignment(TextAlignment.CENTER)))
                                     .addHeaderCell(new Cell().add(new Paragraph("P.V.No").setFont(boldfont).setTextAlignment(TextAlignment.CENTER)))
                                     .addCell("Station")
-                                    .addCell("July")
-                                    .addCell("SC1234"))
+                                    .addCell(months[payment.getMonth().getMonth()])
+                                    .addCell(payment.getPaymentVoucherNum()))
                             .setFontSize(12)));
 
             document.add(new Paragraph(new Text("\n")));
@@ -90,19 +90,19 @@ public class PdfWriterClass {
                     .addHeaderCell(new Cell().add(new Paragraph("Detailed Description Of Service or Article").setFont(boldfont).setTextAlignment(TextAlignment.CENTER)))
                     .addHeaderCell(new Cell().add(new Paragraph("Rate").setFont(boldfont).setTextAlignment(TextAlignment.CENTER)))
                     .addHeaderCell(new Cell().add(new Paragraph("Amount").setFont(boldfont).setTextAlignment(TextAlignment.CENTER)))
-                    .addCell(new Cell().add(new Paragraph(" ")))
-                    .addCell(new Cell().add(new Paragraph("Health care ")))
-                    .addCell(new Cell().add(new Paragraph(" ")))
-                    .addCell(new Cell().add(new Paragraph(" ")))
-                    .addCell(new Cell().add(new Paragraph("Finacial Authority")))
-                    .addCell(new Cell().add(new Paragraph("Amount")))
+                    .addCell(new Cell().add(new Paragraph(payment.getMonth().getDay() + " " + months[payment.getMonth().getMonth()] + ", " + year)))
+                    .addCell(new Cell().add(new Paragraph(payment.getPurposeOfPayment())))
+                    .addCell(new Cell().add(new Paragraph("NAIRA")))
+                    .addCell(new Cell().add(new Paragraph(((Double)payment.getAmount()).toString())))
+                    .addCell(new Cell().add(new Paragraph("Finacial Authority: " + payment.getBank())))
+                    .addCell(new Cell().add(new Paragraph("TOTAL: " + ((Double)payment.getAmount()).toString())))
                     .addCell(new Cell().add(new Paragraph(" ")))
                     .addCell(new Cell().add(new Paragraph(" ")))
                     .setFontSize(12));
 
             document.add(new Paragraph(new Text("\n")));
 
-            document.add(new Paragraph().add("I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of can be paid under the sub-head quoted ")
+            document.add(new Paragraph().add("I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of " + payment.getAmountInWords().toUpperCase() + " can be paid under the sub-head quoted ")
                     .setFont(normalfont).setFontSize(12));
 
             document.add(new Paragraph(new Text("\n")));
@@ -111,17 +111,17 @@ public class PdfWriterClass {
                     .addCell(new Cell().setBorder(Border.NO_BORDER)
                             .add(new Paragraph().add("Place: .....................................................")))
                     .addCell(new Cell().setBorder(Border.NO_BORDER)
-                            .add(new Paragraph().add("Signature: "))
+                            .add(new Paragraph().add("Signature: " + payment.isSignature()))
                             .add(new Paragraph().add(new Text("\n")))
-                            .add(new Paragraph().add("Name: "))
+                            .add(new Paragraph().add("Name: " + payment.getFullName().toUpperCase()))
                             .add(new Paragraph().add(new Text("\n")))
-                            .add(new Paragraph().add("Title: "))
+                            .add(new Paragraph().add("Title: " + payment.getTitle().toUpperCase()))
                             .add(new Paragraph().add(new Text("\n")))
                             .add(new Paragraph().add("Officer Controlling Experience"))));
 
             document.add(new Paragraph(new Text("\n")));
 
-            document.add(new Paragraph().add("RECEIVED this ..............day of .........20.......in payment of the above, the sum of ................. ")
+            document.add(new Paragraph().add("RECEIVED this " + payment.getMonth().getDay() + " day of " + months[payment.getMonth().getMonth()] + ", " + year + " in payment of the above, the sum of " + payment.getAmountInWords().toUpperCase())
                     .setFont(normalfont).setFontSize(12));
 
             document.add(new Paragraph(new Text("\n")));
@@ -138,15 +138,6 @@ public class PdfWriterClass {
 
             document.add(new Paragraph().add("*The certificate must be made to apply to the circumstances of the payment.")
                     .setFont(normalfont).setFontSize(12));
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            Payment payment = new Payment();
-            new PdfWriterClass(payment).writeToFile();
-        } catch (IOException e) {
-            System.err.println("System Error: " + e.getMessage());
         }
     }
 }

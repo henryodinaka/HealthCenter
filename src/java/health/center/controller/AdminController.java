@@ -5,8 +5,12 @@ import health.center.model.Company;
 import health.center.model.Payment;
 import health.center.service.AdminService;
 import health.center.service.CompanyService;
+import health.center.utils.PdfWriterClass;
+import java.io.IOException;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,11 +27,12 @@ public class AdminController implements java.io.Serializable {
     private String password;
     private String confirmPassword;
     private Company company;
+    private Payment payment;
     @Autowired
     private AdminService adminService;
     @Autowired
     private CompanyService companyService;
-    
+
     public AdminController() {
     }
 
@@ -36,33 +41,56 @@ public class AdminController implements java.io.Serializable {
         adminService.createAccount(admin);
         return "login?faces-redirect=true";
     }
-    
-    public String login(){
-        try{
+
+    public String login() {
+        try {
             Administrator admin = adminService.login(username, password);
             setAdmin(admin);
             return "admin_dashBoard?faces-redirect=true";
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return "login";
         }
     }
-    
-    public void setAdmin(Administrator admin){
+
+    public void setAdmin(Administrator admin) {
         setUsername(admin.getUsername());
         setFullName(admin.getFullName());
     }
-    
-    public String viewReceipts(Company company){
+
+    public String viewPayments(Company company) {
         this.company = company;
-        return "all_receipt?faces-redirect=true";
+        return "all_payment?faces-redirect=true";
     }
-    
-    public List<Payment> getCompanyReceipts(){
+
+    public String viewPayment(Payment payment) {
+        this.payment = payment;
+        return "html_to_pdf?faces-redirect=true";
+    }
+
+    public List<Payment> getCompanyPayments() {
         return companyService.getAllPayments(company.getCompanyId());
     }
-    
-    public Company getCompany(){
+
+    public void printPayment() {
+
+    }
+
+    public String downloadPayment() {
+        try {
+            new PdfWriterClass(payment).writeToFile();
+        } catch (IOException e) {
+        }
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, payment.getReceipt() + " downloaded", "to " + System.getProperty("user.home") + "\\Payments");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        return "html_to_pdf";
+    }
+
+    public Company getCompany() {
         return company;
+    }
+    
+    public Payment getPayment() {
+        return payment;
     }
 
     /**
