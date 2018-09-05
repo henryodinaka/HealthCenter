@@ -9,7 +9,7 @@
 
     <h:head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="resources/movieSite.css"/>
+        <link rel="stylesheet" href="resources/health-center.css"/>
         <title>Login</title>
     </h:head>
     <h:body>
@@ -22,19 +22,22 @@
                 </h:form>
             </div> 
         </div>
-        <div id="wrapper-other"> 
-            <div class="form-tag-div">
+        <div id="login-container"> 
+            <div class="login-content">
 
                 <h:form id="regForm">
-                    <div id="form-content" class="row">
+                    <div class="row">
                         <div class="col-12">
-                            <div style=" position: relative;margin-bottom: 1em;left: 20px; width: 60%;height: 2em;border-radius: .5em;">
-                                <span class="nav-link" ><p:inputText a:autofocus ="true" value="#{companyBean.username}" placeholder="Username" /></span> 
+                            <div class="logi-form">
+                                <p:outputLabel for="username" value="Username"/>
+                                <p:inputText id="username" a:autofocus ="true" value="#{companyBean.username}" placeholder="Username" required="true" />
                             </div>
-                            <div style=" position: relative;margin-bottom: 1em;left: 20px; width: 90%;height: 2em;border-radius: .5em;">
-                                <span class="nav-link" ><p:password  value="#{companyBean.password}" placeholder="Password"/></span> </div>
+                            <div class="logi-form">
+                                <p:outputLabel for="pass" value="Password"/>
+                                <p:password id="pass" value="#{companyBean.password}" placeholder="Password" required="true"/>
+                            </div>
                             <div >
-                                <p:outputLabel for="userType" value="Sign in as"/>
+                                <p:outputLabel for="userType" value="Select User Type"/>
                                 <p:selectOneMenu value="#{companyBean.userType}" id="userType" required="true" requiredMessage="How do we Address YOu?">
                                     <f:selectItem itemValue="U" itemLabel="User"/>
                                     <f:selectItem itemValue="A" itemLabel="Admin"/>
@@ -42,10 +45,10 @@
                             </div>
                             <div>
                                 <span class="nav-link">
-                                    <p:commandButton class="dropbtn" action="#{companyBean.loginBtn()}" value="Login"/>
+                                    <p:commandButton class="dropbtn" action="#{companyBean.loginBtn()}" value="Login" style="width: 20%;"/>
                                 </span> 
                             </div>
-                            <p><h1><p:commandLink action="new_account?faces-redirect=true" value="Create Account"/> </h1></p>
+                            <p><h1><p:commandLink style="font-size: 18px;" action="new_account?faces-redirect=true" value="Create Account"/> </h1></p>
                         </div>
                     </div>
                 </h:form>

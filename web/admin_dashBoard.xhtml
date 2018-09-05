@@ -25,35 +25,15 @@
                         </p> 
                     </div>
                     <div class="col-5">
+                            <p:panel header="The List of all the registered companies" /> 
                         <p:accordionPanel value="#{companyBean.allCompanies}" var="company" dynamic="true" multiple="true">
                             <p:tab title="#{company.companyName}"> <h:outputText value="Company Name: #{company.companyName}" />
                                 <h:outputText value="Company Email: #{company.email}" /><br/>
                                 <h:outputText value="Username: #{company.username}" /><br/>
-                                <h:commandButton value="View Payments" action="#{adminBean.viewPayments(company)}"/><br/>
-                        </p:tab>
+                                <p:commandButton value="View Payments" action="#{adminBean.viewPayments(company)}"/><br/>
+                            </p:tab>
                         </p:accordionPanel>
-
-                        <h:form id="paymentReview">
-                            <p:dataGrid var="company" value="#{companyBean.allCompanies}" columns="4" layout="grid"
-                                        rows="8" paginator="true" id="movie-grid"
-                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                        rowsPerPageTemplate="6,12,16">
-
-                                <f:facet name="header">
-                                    <p class="caption-index">The List of all the registered companies</p>
-                                </f:facet>
-
-                                <p:panel header="#{company.companyName}" style="text-align:center">
-                                    <h:panelGrid columns="1" style="width:100%">
-                                        <h:outputText value="Company Name: #{company.companyName}" />
-                                        <h:outputText value="Company Email: #{company.email}" />
-                                        <h:outputText value="Username: #{company.username}" />
-                                        <h:commandButton value="View Payments" action="#{adminBean.viewPayments(company)}"/>
-                                    </h:panelGrid>
-                                </p:panel>
-
-                            </p:dataGrid>
-                        </h:form> 
+ 
                     </div>
                 </div>
             </ui:define>
