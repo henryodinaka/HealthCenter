@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Print Page</title>
         <link rel="stylesheet" href="resources/health-center.css"/>
@@ -13,23 +14,14 @@
                 <div class="main-container" style="background-color: cyan;margin: auto; width: 80%;">
                     <div class="container" style="background-color: whitesmoke;width: 90%;margin: auto;">
                         <div class="row">
-                            <div class="col-7"></div>
-                            <div class="col-2">
-                                <p>
-                                    <button type="button" id="uName" onclick="document.getElementById('message-div').style.display = 'block'" style="width:auto;">View Proof Of Payment</button> 
-                                </p>
-                            </div>
+                            <div class="col-6"></div>
                             <h:form>
-                                <div class="col-2">
-                                    <p>
-                                        <h:commandLink value="Print File" action="#{adminBean.printPayment()}"/>
-                                    </p>
+                                <div class="col-3"> 
+                                    <p:commandLink onclick="document.getElementById('receipt-div').style.display = 'block'" style="width:auto;" value="Proof Payment"/> 
                                 </div>
-                                <div class="col-2">
-                                    <p>
-                                        <h:commandButton class="form-btn" value="Download File" action="#{adminBean.downloadPayment()}"/>
-                                    </p>
-                                </div>
+                                <div class="col-2"> 
+                                    <p:commandLink value="Print File" action="#{adminBean.downloadPayment()}"/> 
+                                </div> 
                             </h:form>
                         </div>
                         <div>
@@ -65,7 +57,7 @@
                             </div>
                         </div>
                         <div>
-                            <p>Head:..........................................................................................................................</p>
+                            <p>Head:<u><h:outputText value="#{companyBean.companyName}"/> </u>.....................................................................................</p>
                             <p>Dr to...........................................................................................................................</p>
                             <p>GPPH 3/1/2005/4,000-q</p>
                         </div>
@@ -80,24 +72,30 @@
                                     </thead>
                                     <tbody>
                                         <td>
-                                            <h:outputText value="#{adminBean.payment.created}"/>
+                                            <u><h:outputText value="#{adminBean.payment.created}"/></u>
                                         </td>
                                         <td>
-                                            <h:outputText value="#{adminBean.payment.purposeOfPayment}"/>
+                                            <u><h:outputText value="#{adminBean.payment.purposeOfPayment}"/></u>
                                         </td>
                                         <td>
                                             <h:outputText value="Naira"/>
                                         </td>
                                         <td>
-                                            <h:outputText value="#{adminBean.payment.amount}"/>
+                                            <u><h:outputText value="#{adminBean.payment.amount}"/></u>
                                         </td>
                                     </tbody>
                                     <tfoot>
                                         <td>
-                                            Financial Authority: <h:outputText value="#{adminBean.payment.bank.toUpperCase()}"/>
+                                            Financial Authority: 
+                                    <u>
+                                         <h:outputText value="#{adminBean.payment.bank.toUpperCase()}"/>
+                                    </u> 
                                         </td>
                                         <td>
-                                            Total: <h:outputText value="#{adminBean.payment.amount}"/> 
+                                            Total: 
+                                    <u>
+                                        <h:outputText value="#{adminBean.payment.amount}"/> 
+                                    </u>  
                                         </td>
                                     </tfoot>
                                 </table>
@@ -106,37 +104,51 @@
                         <div class="row">
                             <div class="col-10">
                                 <p>
-                                    I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of <h:outputText value="#{adminBean.payment.amountInWords}"/> can be paid under the sub-head quoted 
+                                    <span>&lowast;</span> I CERTIFY THAT the above account is correct an was incurred under the authority quoted, and the service have been duly performed, and that the rate/price is according to regulation or fair and reasonable and that the amount of <u><h:outputText value="#{adminBean.payment.amountInWords}"/> </u>can be paid under the sub-head quoted 
                                 </p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-5">
-                                Place..........................20......
+                                <p>Place....................................................... ........................20.............</p>
                             </div>
                             <div class="col-5">
-                                Signature: <h:outputText value="#{adminBean.payment.signature}"/>
+                                Signature: 
+                                <u>
+                                    <strike> <h:outputText value="#{adminBean.payment.fullName}"/></strike>
+                                </u> 
                                 <p>
-                                    Name: <h:outputText value="#{adminBean.payment.fullName.toUpperCase()}"/>
+                                    Name: 
+                                    <u>
+                                        <h:outputText value="#{adminBean.payment.fullName.toUpperCase()}"/>
+                                    </u> 
                                 </p>
                                 <p>
-                                    Title: <h:outputText value="#{adminBean.payment.title.toUpperCase()}"/><br/>
+                                    Title:  
+                                    <u>
+                                        <h:outputText value="#{adminBean.payment.title.toUpperCase()}"/><br/>
+                                    </u> 
                                     <span>
                                         <i>Officer Controlling Experience</i>
                                     </span>
                                 </p>
                             </div>
                         </div>
-                        <p>
-                            RECEIVED this #{adminBean.payment.month} in payment of the above, the sum of #{adminBean.payment.amountInWords.toUpperCase()}
-                        </p>
+                        <div class="row">
+                            <div class="col-10">
+                                <p>
+                                    RECEIVED this <u>#{adminBean.payment.month}</u> day of <u>#{adminBean.payment.month} </u> in payment of the above, the sum of <u>#{adminBean.payment.amountInWords.toUpperCase()}</u>
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-5">
-                                <p>Witness to mark ........................................................</p>
+                                <p>Witness to mark ..........................................</p>
                             </div>
                             <div class="col-5">
-                                <p>.......................................................................</p>
-                                <p><i>Signature Of the Receiver</i></p>
+                                <p>..............................................................</p>
+                                <i>Signature Of the Receiver</i>
                             </div>
                         </div>
                         <p>*The certificate must be made to apply to the circumstances of the payment</p>
@@ -144,9 +156,7 @@
                     </div>
                     <!--@Henry please arrange the position of the iframe how you see fit
                         Note: It displays the uploaded receipt for the particular payment-->
-                    <div>
-                        <iframe id="message-div" src="/HealthCenter/faces/company/receipt/#{companyBean.receipt}" style="width: 700px; height: 500px;"/>
-                    </div>
+
                 </div>
             </ui:define>
         </ui:composition>

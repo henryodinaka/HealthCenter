@@ -42,6 +42,9 @@ public class AdminController implements java.io.Serializable {
         return "login?faces-redirect=true";
     }
 
+    public String test(){
+        return "file_upload?faces-redirect=true";
+    }
     public String login() {
         try {
             Administrator admin = adminService.login(username, password);

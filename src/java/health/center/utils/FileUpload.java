@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package health.center.utils;
 
 import java.io.File;
@@ -36,6 +32,7 @@ public class FileUpload {
     public String upload(UploadedFile file, String username) {
         String fileType = "." + file.getContentType().split("/")[1];
         String fileName = null;
+        String filePath =null;
         System.out.println("File size: " + file.getSize());
         if ((file.getContentType().contains("pdf") || file.getContentType().contains("image")) && file.getSize() <= 2000000) {
             try {
@@ -48,6 +45,7 @@ public class FileUpload {
                         out.write(c);
                     }
                 }
+                filePath = f.getPath(); 
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }

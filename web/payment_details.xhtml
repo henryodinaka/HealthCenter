@@ -16,72 +16,65 @@
                             <div id="form-container" class="row">
 
                                 <div id="form-content" class="col-9">
-
-                                    <div class="row">
+ 
 
                                         <div class="form-tag col-7">
-                                            <p:outputLabel class="form-label"  value="Month" for="month" /> <br/> <br/>
+                                            <p:outputLabel class="form-label"  value="Month" for="month" />  : 
                                             <h:outputText  id="month" value="#{companyBean.month}"/>
                                         </div>
 
                                         <div class="form-tag col-4">
-                                            <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  <br/> <br/>
+                                            <p:outputLabel class="form-label"  value="P.V.No" for="pvn" />  : 
                                             <h:outputText id="pvn" value="#{companyBean.paymentVoucherNum}"/> 
                                         </div>
-                                    </div>
+                                     <br/><br/>
 
-                                    <div class="row">
+                                     
 
                                         <div class="form-tag col-5" ><br/>
-                                            <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  <br/> <br/>
+                                            <p:outputLabel class="form-label"  value="Purpose of payment " for="purpose" />  : 
                                             <h:outputText id="purpose" value="#{companyBean.purposeOfPayment}" />
                                         </div>
 
                                         <div class="form-tag col-6"><br/>
-                                            <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  <br/> <br/>
+                                            <p:outputLabel class="form-label"  value="Amount Paid " for="amount" />  : 
                                             <h:outputText id="amount" value="#{companyBean.amount}"/>
                                         </div>
-                                    </div>
+                                    <br/><br/>
 
-                                    <div class="row">
+                                    
 
                                         <div class="form-tag col-5">
-                                            <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  <br/> <br/>
+                                            <p:outputLabel  class="form-label" value="Financial Authority" for="bank" />  : 
                                             <h:outputText id="bank" value="#{companyBean.bank}"/>
                                         </div>
 
                                         <div class="form-tag col-6">
-                                            <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  <br/> <br/>
+                                            <p:outputLabel class="form-label"  value="Amoun In words" for="amountInWord" />  : 
                                             <h:outputText id="amountInWord" value="#{companyBean.amountInWords}"/>
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                   <br/><br/>
+                                     
 
                                         <div class="form-tag col-11">
-                                            <p:outputLabel class="form-label"  value="Full Name " for="fName" />  <br/> <br/>
+                                            <p:outputLabel class="form-label"  value="Full Name " for="fName" />  : 
                                             <h:outputText id="fName" value="#{companyBean.fullName}"/> 
                                         </div>
 
                                         <div class="form-tag col-11">
-                                            <p:outputLabel class="form-label"  value="Title " for="title" />  <br/> <br/>
-                                            <h:inputText id="title" value="#{companyBean.title}"/>
+                                            <p:outputLabel class="form-label"  value="Title " for="title" />  : 
+                                            <h:outputText id="title" value="#{companyBean.title}"/>
                                         </div>
-                                    </div> 
-                                </div>
-                            </div>
+                                    </div>  
+                                </div> 
                             <div class="row foot-section">
-                                <div class="col-4 form-btn-div">
-                                    <span><p:commandButton action="all_payment?faces-redirect=true" value="&lt;&lt;&lt; Back"/></span>
+                                <div class="col-2 form-btn-div">
+                                    <span><p:commandButton action="company_dashboard?faces-redirect=true" value="&lt;&lt;&lt; Back"/></span>
                                 </div> 
                                 <div class="col-4 form-btn-div">
-                                    <p>
-                                        <button type="button" id="uName" onclick="document.getElementById('message-div').style.display = 'block'" style="width:auto;">View Payment Receipt</button> 
-                                    </p>
-                                </div>
-                                <!--@Henry please arrange the position of the iframe how you see fit
-                                Note: It displays the uploaded receipt for the particular payment-->
-                                <div>
-                                    <iframe id="message-div" src="/HealthCenter/faces/company/receipt/#{companyBean.receipt}" style="width: 700px; height: 500px;"/>
+
+                                    <button type="button" id="uName" onclick="document.getElementById('receipt-div').style.display = 'block'" style="width:auto;">View Payment Receipt</button> 
+
                                 </div>
                             </div>
                         </h:form>

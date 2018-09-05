@@ -25,7 +25,13 @@
                         </p> 
                     </div>
                     <div class="col-5">
-
+                        <p:accordionPanel value="#{companyBean.allCompanies}" var="company" dynamic="true" multiple="true">
+                            <p:tab title="#{company.companyName}"> <h:outputText value="Company Name: #{company.companyName}" />
+                                <h:outputText value="Company Email: #{company.email}" /><br/>
+                                <h:outputText value="Username: #{company.username}" /><br/>
+                                <h:commandButton value="View Payments" action="#{adminBean.viewPayments(company)}"/><br/>
+                        </p:tab>
+                        </p:accordionPanel>
 
                         <h:form id="paymentReview">
                             <p:dataGrid var="company" value="#{companyBean.allCompanies}" columns="4" layout="grid"
@@ -42,7 +48,7 @@
                                         <h:outputText value="Company Name: #{company.companyName}" />
                                         <h:outputText value="Company Email: #{company.email}" />
                                         <h:outputText value="Username: #{company.username}" />
-                                        <h:commandButton value="View Receipts" action="#{adminBean.viewPayments(company)}"/>
+                                        <h:commandButton value="View Payments" action="#{adminBean.viewPayments(company)}"/>
                                     </h:panelGrid>
                                 </p:panel>
 
