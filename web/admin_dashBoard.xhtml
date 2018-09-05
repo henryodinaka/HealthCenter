@@ -24,7 +24,7 @@
                             Admin Username : <h:outputText value="#{adminBean.username}"/>
                         </p> 
                     </div>
-                    <div class="col-5">
+                    <div class="col-5 scroll">
                             <p:panel header="The List of all the registered companies" /> 
                         <p:accordionPanel value="#{companyBean.allCompanies}" var="company" dynamic="true" multiple="true">
                             <p:tab title="#{company.companyName}"> <h:outputText value="Company Name: #{company.companyName}" />
