@@ -27,7 +27,7 @@
                 </h:form>
             </div> 
         </div> 
-        <h1 align="center">Rivers State Primary Health Care Management Board</h1>
+        <p:panel header="Rivers State Primary Health Care Management Board"/>
         <br />
         <div id="wrapper-other"> 
 
@@ -35,15 +35,18 @@
                     <ui:insert name="body"/> 
             </div>
         </div> 
-        <div id="message-div" class="modal form-tag-div">
+        <div id="receipt-div" class="modal form-tag-div">
 
             <div id="message-form" class="modal-content animate">
                 <div class="imgcontainer">
-                    <span onclick="document.getElementById('message-div').style.display = 'none'" class="close" title="Close Modal">&times;</span> 
+                    <span onclick="document.getElementById('receipt-div').style.display = 'none'" class="close" title="Close Modal">&times;</span> 
                 </div>
 
                 <div class="container">
-                    <p:graphicImage value="{companyBean.receitURI}"/>
+                   
+                                    <iframe id="receipt-fram" src="/HealthCenter/faces/company/receipt/#{companyBean.receipt}" style="width: 100%; height: 500px; margin: auto;"/>
+                                
+                    <p:graphicImage value="#{companyBean.receipt}"/>
                 </div>
             </div>
         </div>

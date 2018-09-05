@@ -2,6 +2,7 @@ package health.center.model;
 
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.CustomScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,31 +23,33 @@ import org.hibernate.annotations.UpdateTimestamp;
 public class Company implements java.io.Serializable {
 
     @Id
-    @Column(name = "companyId")
+    @Column(name = "companyId", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int companyId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String companyName;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     
     @OneToMany(targetEntity = Payment.class, mappedBy = "companyId")
     private List<Payment> payments ;
 
+    @Column
     @CreationTimestamp
     private Date created;
 
+    @Column
     @UpdateTimestamp
     private Date modified;
 

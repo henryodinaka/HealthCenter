@@ -1,7 +1,6 @@
 body {
     margin: 0;
-    padding: 0;
-    background-color: #dff9fb;
+    padding: 0; 
 }
 
 /*Tooltip styling*/
@@ -452,10 +451,6 @@ img.avatar {
     border-radius: 50%;
 }
 
-.container {
-    padding: 16px;
-}
-
 span.psw {
     float: right;
     padding-top: 16px;
@@ -501,13 +496,6 @@ button:hover, .form-btn:hover {
 }
 
 
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-}
 
 /* The Close Button (x) */
 .close {

@@ -33,11 +33,16 @@
                         <p>
                             Officer Controlling Expenditure: <h:outputText value="#{companyBean.title}"/>
                         </p>
-                        <p>
-                            <p:commandButton action="#{companyBean.updateDetails()}" value="Save Update"/>
-                        </p>
+                        <div class="row">
+                            <div class="col-4" style="padding: 5px">
+                                <p:commandButton action="#{companyBean.updateDetails()}" value="Save Update"/>
+                            </div>
+                            <div class="col-6" style="padding: 5px">
+                                <p:commandButton value="Add another Payment" action="#{companyBean.newPayment()}"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-5 scroll">
                         <h:form id="paymentReview">
                             <p:dataGrid var="payment" value="#{companyBean.allPayments}" columns="2"
                                         rows="8" paginator="true" id="movie-grid"
@@ -59,9 +64,6 @@
                             </p:dataGrid>
                         </h:form> 
                     </div>
-                </div>
-                <div>
-                    <p:commandButton value="Make Payment" action="#{companyBean.newPayment()}"/>
                 </div>
             </ui:define>
         </ui:composition>
