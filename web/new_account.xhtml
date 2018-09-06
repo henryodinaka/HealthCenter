@@ -67,9 +67,7 @@
                             </div>
                             <div class="row foot-section">
                                 <div class="col-2 form-btn-div">
-                                    <span>
-                                        <p:commandButton action="index?faces-redirect=true" value="Cancel"/>
-                                    </span>
+                                    <p:button outcome="index?faces-redirect=true" value="Cancel"/>
                                 </div>  
                                 <div class="col-7 form-btn-div">
                                     <span id="btn-next"  ><p:commandButton action="#{companyBean.saveNewAccount()}" value="Save &amp; Proceed To Payment"/></span> 

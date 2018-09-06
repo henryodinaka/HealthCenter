@@ -37,6 +37,9 @@ body{
 .form-btn-div{
     height: 50%;
 }
+.star{
+    background-image: url("../Images/cancel-3.png");
+}
 #btn-next{
     position: relative;
     left: 43%;

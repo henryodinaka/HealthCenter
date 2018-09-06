@@ -30,7 +30,7 @@
 
                                             <div class="form-tag col-7">
                                                 <p:outputLabel class="form-label" value="Month Paid for" for="month" /> <br/> <br/>
-                                                <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Month Paid for"  /> 
+                                                <p:calendar  id="month" value="#{companyBean.month}" required="true"  placeholder="Month Paid for" showOn="button" /> 
 <!--                                                <p:selectOneMenu class="col-9" value="{companyBean.month}" id="month" required="true" requiredMessage="Which month Paid?" >
                                                     <f:selectItem itemValue="" itemLabel="Select Month"/>
                                                     <f:selectItem itemValue="1" itemLabel="January"/>
@@ -85,14 +85,14 @@
 
                                             <div class="form-tag col-11">
                                                 <p:outputLabel class="form-label"  value="Date Of Payment" for="dateOfPayment" /> <br/> <br/>
-                                                <p:calendar  id="dateOfPayment" value="#{companyBean.dateOfPayment}" required="true"  placeholder="Month Paid for"  /> 
+                                                <p:calendar  id="dateOfPayment" value="#{companyBean.dateOfPayment}" required="true"  placeholder="Date of payment" showOn="button" pages="3"/> 
                                             </div>
                                         </div> 
                                     </div>
                                 </div>
                                 <div class="row foot-section">
                                     <div class="col-2 form-btn-div">
-                                        <span><h:commandButton action="index?faces-redirect=true" value="Cancel"/></span>
+                                        <p:button icon="star" outcome="index?faces-redirect=true" value="Cancel"/>
                                     </div> 
                                     <div class="col-4 form-btn-div">
 

@@ -391,8 +391,8 @@ a:active {
 .form-tag input{
     position: relative;
     margin-bottom: 1em; 
-    width: 90%;
-    height: 2em; 
+    width: 80%;
+    height: 1.5em; 
     border-radius: .5em;
 } 
 
