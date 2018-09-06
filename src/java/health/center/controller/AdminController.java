@@ -5,14 +5,17 @@ import health.center.model.Company;
 import health.center.model.Payment;
 import health.center.service.AdminService;
 import health.center.service.CompanyService;
-import health.center.utils.PdfWriterClass;
-import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 /**
  *
@@ -74,18 +77,23 @@ public class AdminController implements java.io.Serializable {
         return companyService.getAllPayments(company.getCompanyId());
     }
 
-    public void printPayment() {
-
-    }
-
-    public String downloadPayment() {
-        try {
-            new PdfWriterClass(payment).writeToFile();
-        } catch (IOException e) {
-        }
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, payment.getReceipt() + " downloaded", "to " + System.getProperty("user.home") + "\\Payments");
-        FacesContext.getCurrentInstance().addMessage(null, message);
-        return "html_to_pdf";
+    public void downloadPayment() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+        HttpSession session = (HttpSession) externalContext.getSession(true);
+        String url = "http://localhost:59407/HealthCenter/faces/html_to_pdf.xhtml;session="+session+"?pdf=true";
+        try{
+            ITextRenderer renderer = new ITextRenderer();
+            renderer.setDocument(new URL(url).toString());
+            renderer.layout();
+            response.reset();
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "inline; file=\"paymentFile.pdf\"");
+            OutputStream out = response.getOutputStream();
+            renderer.createPDF(out);
+        } catch (Exception e) {}
+        facesContext.responseComplete();
     }
 
     public Company getCompany() {
