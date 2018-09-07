@@ -8,7 +8,7 @@
         <title>Print Page</title>
         <link rel="stylesheet" href="resources/health-center.css"/>
     </h:head>
-    <h:body> 
+    <h:body style="padding: auto; margin: auto; width:100%"> 
         <div class="main-container" style="background-color: cyan;margin: auto; width: 100%;">
             <div class="container" style="background-color: whitesmoke;width: 100%;margin: auto;">
                 <div class="row">
@@ -155,6 +155,22 @@
             <!--@Henry please arrange the position of the iframe how you see fit
                 Note: It displays the uploaded receipt for the particular payment-->
         </div> 
+        
+        <div id="receipt-div" class="modal form-tag-div">
+
+            <div id="message-form" class="modal-content animate">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('receipt-div').style.display = 'none'" class="close" title="Close Modal">&times;</span> 
+                </div>
+
+                <div class="container">
+
+                    <iframe id="receipt-fram" src="/HealthCenter/faces/company/receipt/#{companyBean.receipt}" style="width: 100%; height: 500px; margin: auto;"/>
+
+                    <p:graphicImage value="#{companyBean.receipt}"/>
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
 

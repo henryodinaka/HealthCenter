@@ -16,7 +16,12 @@ u {
   padding: 30px;
   text-align: center;
 }
-
+legend {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 30px;
+}
 #header {
   overflow: hidden;
   background-color: #333;
@@ -40,6 +45,13 @@ u {
 #header a.active {
   background-color: #4CAF50;
   color: white;
+}
+#navbar {
+    position: relative; 
+    margin: auto;
+    padding-left: 6em;
+    height: 4em;
+    background-color:  #636e72;
 }
 
 .content {
@@ -109,12 +121,11 @@ button:hover {
     background-color: cadetblue;
 }
 .login-form{
-    position: relative;
-    top: 1em;
+    position: relative; 
     margin: auto;
     width: 60%; 
     border-radius: .5em;
-    background-color: activeborder;
+    background-color: #636e72;
 }
 .login-form div{
     padding: 5px;
@@ -233,8 +244,7 @@ span.psw {
 .col-12 {width: 100%;}
 
 [class*="col-"] {
-    float: left; 
-    border: 1px solid red;
+    float: left;  
 }
 .row::after {
     content: "";

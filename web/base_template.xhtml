@@ -20,10 +20,11 @@
 
             <div id="navbar">
                 <h:form>
-                    <span class="nav-link active" ><h:commandLink  value="Home" action="index?faces-redirect=true"/></span>
+                    <span class="nav-link active" ><h:commandLink class="active" value="Home" action="index?faces-redirect=true"/></span>
                     <span class="nav-link" ><h:commandLink value="Payment Voucher" action="#{companyBean.newPayment()}"/></span>
                     <span class="nav-link" ><h:commandLink value="About" action="index"/></span> 
-                    <span class="nav-link nv-right" ><h:commandLink action="#{companyBean.loginControlBtn()}" value="#{companyBean.loginBtn}"/></span>
+                    <span class="nav-link" ><h:commandLink action="#{companyBean.loginControlBtn()}" value="#{companyBean.loginBtn}"/></span>
+                    <span class="nav-link " style="float: right; position: relative;right: 2em; bottom: 3em;" ><h:commandLink value="Profile" action="#{companyBean.profile()}" rendered="#{companyBean.disable}"/></span>
                 </h:form>
             </div> 
         </div> 
@@ -32,24 +33,9 @@
         <div id="wrapper-other"> 
 
             <div id="main-content"> 
-                    <ui:insert name="body"/> 
+                <ui:insert name="body"/> 
             </div>
         </div> 
-        <div id="receipt-div" class="modal form-tag-div">
-
-            <div id="message-form" class="modal-content animate">
-                <div class="imgcontainer">
-                    <span onclick="document.getElementById('receipt-div').style.display = 'none'" class="close" title="Close Modal">&times;</span> 
-                </div>
-
-                <div class="container">
-                   
-                                    <iframe id="receipt-fram" src="/HealthCenter/faces/company/receipt/#{companyBean.receipt}" style="width: 100%; height: 500px; margin: auto;"/>
-                                
-                    <p:graphicImage value="#{companyBean.receipt}"/>
-                </div>
-            </div>
-        </div>
         <ui:include src="footer.xhtml"/>
     </h:body>
 </html>

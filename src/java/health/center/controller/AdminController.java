@@ -5,6 +5,7 @@ import health.center.model.Company;
 import health.center.model.Payment;
 import health.center.service.AdminService;
 import health.center.service.CompanyService;
+import health.center.utils.SessionUtils;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.List;
@@ -52,6 +53,9 @@ public class AdminController implements java.io.Serializable {
         try {
             Administrator admin = adminService.login(username, password);
             setAdmin(admin);
+            
+            HttpSession httpSession = SessionUtils.getSession();
+            httpSession.setAttribute("logged", 1);
             return "admin_dashBoard?faces-redirect=true";
         } catch (NullPointerException e) {
             return "login";
@@ -82,7 +86,7 @@ public class AdminController implements java.io.Serializable {
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
         HttpSession session = (HttpSession) externalContext.getSession(true);
-        String url = "http://localhost:59407/HealthCenter/faces/html_to_pdf.xhtml;session="+session+"?pdf=true";
+        String url = "http://localhost:8080/HealthCenter/faces/html_to_pdf.xhtml;session="+session+"?pdf=true";
         try{
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocument(new URL(url).toString());

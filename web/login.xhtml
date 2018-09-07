@@ -19,48 +19,47 @@
             <div id="navbar">
                 <h:form id="login-form">
                     <span class="nav-link " title="Home"><h:commandLink action="index?faces-redirect=true" value="Home"/></span>
-                    <span class="nav-link " ><h:commandLink class="active" value="About" action="about?faces-redirect=true"/></span>
+                    <span class="nav-link " ><h:commandLink class="active" value="Login" action="login"/></span>
                 </h:form>
             </div> 
         </div>
         <div id="login-container"> 
             <div class="login-content">
-
                 <h:form id="regForm">
                     <div class="row col-12">
-                            <div class="row">
-                                <div style="font-size: 30px; font-style: bold; padding: 10px; position: relative; left: 1em" class="col-6">
-                                    <strong> Sign in to your account </strong>
+                        <fieldset> 
+                                 
+                                    <legend> Sign in to your account </legend>
+                                 
+                                    <p:commandLink value="Forgot Password ?" action="login" class="col-3" style="position: relative; bottom: 2em; left: 25em;padding: 10px;"/>
+                                 
+                            <br/>
+                            <div class=" login-form">
+                                <div style="position: relative; right: 2.5em">
+                                    <p:outputLabel for="username" value="Username"/>
+                                    <p:inputText id="username" a:autofocus ="true" value="#{companyBean.username}" placeholder="Username" required="true" />
                                 </div>
-                                <div class="col-3" style="position: relative; left: 6em;padding: 10px;">
-                                    <p:commandLink value="Forgot Password ?" action="login"/>
+                                <div>
+                                    <p:outputLabel for="pass" value="Password"/>
+                                    <p:password id="pass" value="#{companyBean.password}" placeholder="Password" required="true"/>
+                                </div>
+                                <div >
+                                    <p:outputLabel for="userType" value="Select User Type"/>
+                                    <p:selectOneMenu value="#{companyBean.userType}" id="userType" required="true" requiredMessage="How do we Address YOu?">
+                                        <f:selectItem itemValue="U" itemLabel="User"/>
+                                        <f:selectItem itemValue="A" itemLabel="Admin"/>
+                                    </p:selectOneMenu>
+                                </div>
+                                <div style="position: relative; top: 1em;" class="row"> 
+                                    <div class="col-5">
+                                        <p:commandLink style="font-size: 18px; position: relative;top: .2em;" action="new_account?faces-redirect=true" value="Create Account"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <p:commandButton action="#{companyBean.loginBtn()}" value="Login" style="width: 90%; position: relative;bottom: 1em; background-color: #4CAF50"/> 
+                                    </div> 
                                 </div>
                             </div>
-                        <div class=" login-form">
-                            <div>
-                                <p:outputLabel for="username" value="Username"/>
-                                <p:inputText id="username" a:autofocus ="true" value="#{companyBean.username}" placeholder="Username" required="true" />
-                            </div>
-                            <div>
-                                <p:outputLabel for="pass" value="Password"/>
-                                <p:password id="pass" value="#{companyBean.password}" placeholder="Password" required="true"/>
-                            </div>
-                            <div >
-                                <p:outputLabel for="userType" value="Select User Type"/>
-                                <p:selectOneMenu value="#{companyBean.userType}" id="userType" required="true" requiredMessage="How do we Address YOu?">
-                                    <f:selectItem itemValue="U" itemLabel="User"/>
-                                    <f:selectItem itemValue="A" itemLabel="Admin"/>
-                                </p:selectOneMenu>
-                            </div>
-                            <div style="position: relative; top: 1em;" class="row"> 
-                                <div class="col-5">
-                                    <p:commandLink style="font-size: 18px; position: relative;top: .2em;" action="new_account?faces-redirect=true" value="Create Account"/>
-                                </div>
-                                <div class="col-4">
-                                    <p:commandButton action="#{companyBean.loginBtn()}" value="Login" style="width: 90%; position: relative;bottom: 1em; background-color: #4CAF50"/> 
-                                </div> 
-                            </div>
-                        </div>
+                        </fieldset>
                     </div>
                 </h:form>
             </div> 

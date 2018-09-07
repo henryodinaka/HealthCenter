@@ -52,7 +52,7 @@ public class CompanyBean implements java.io.Serializable {
     private String currentForm;
     private int currentStage = 1;
     private int pageCounter = 1;
-    private boolean disable = true;
+    private boolean disable = false;
 //    private String nextButton = "New Payment";
 //    private String previousButtton = "Cancel";
     private final int totalStage;
@@ -135,18 +135,18 @@ public class CompanyBean implements java.io.Serializable {
     public String makePayment() {
         Company company = new Company();
         company.setCompanyId(SessionUtils.getCompanyId());
-        if(isSignature()){
-        Payment companyPayment = new Payment(company, fullName, title, signature, purposeOfPayment, paymentVoucherNum, amountInWords, amount, bank, receipt, month, dateOfPayment);
-        setPayment(companyPayment);
-        companyService.makePayment(companyPayment);
-        clearPaymentFields();
-        setPayment(null);
-        pageCounter = 4;
-        dynamicText(pageCounter);
-        return "company_dashboard?faces-redirect=true";
-        }else{
+        if (isSignature()) {
+            Payment companyPayment = new Payment(company, fullName, title, signature, purposeOfPayment, paymentVoucherNum, amountInWords, amount, bank, receipt, month, dateOfPayment);
+            setPayment(companyPayment);
+            companyService.makePayment(companyPayment);
+            clearPaymentFields();
+            setPayment(null);
+            pageCounter = 4;
+            dynamicText(pageCounter);
+            return "company_dashboard?faces-redirect=true";
+        } else {
             FacesMessage message = new FacesMessage("error", "you must certify");
-            FacesContext.getCurrentInstance().addMessage(null,message);
+            FacesContext.getCurrentInstance().addMessage(null, message);
             return null;
         }
     }
@@ -222,6 +222,7 @@ public class CompanyBean implements java.io.Serializable {
         if (session.getAttribute("username") != null) {
             session.invalidate();
             setLoginBtn("Login");
+            setDisable(false);
             FacesMessage message = new FacesMessage("Log Out", "Log out successfully");
             FacesContext.getCurrentInstance().addMessage(null, message);
             return "index?faces-redirect=true";
@@ -246,12 +247,27 @@ public class CompanyBean implements java.io.Serializable {
             Company company = companyService.login(username, password);
             SessionUtils.getSession().setAttribute("companyId", company.getCompanyId());
             SessionUtils.getSession().setAttribute("username", company.getUsername());
+            SessionUtils.getSession().setAttribute("logged", 2);
             setCompanyDetails(company);
             setCompany(company);
             setLoginBtn("Log Out");
+            setDisable(true);
             return "company_dashboard?faces-redirect=true";
         } catch (NullPointerException e) {
             return "login?faces-redirect=true";
+        }
+    }
+
+    public String profile() {
+        int logged = (int) SessionUtils.getSession().getAttribute("logged"); 
+        switch (logged) {
+            case 1:System.out.println("The logged role is admin "+logged);
+                return "admin_dashBoard?faces-redirect=true";
+             
+            case 2:System.out.println("The logged role is user "+logged);
+                return "company_dashboard?faces-redirect=true";
+            default:
+                return null;
         }
     }
 
@@ -261,6 +277,7 @@ public class CompanyBean implements java.io.Serializable {
             AdminController adminBean = (AdminController) FacesContext.getCurrentInstance().getApplication().createValueBinding("#{adminBean}").getValue(FacesContext.getCurrentInstance());
             adminBean.setAdmin(admin);
             setLoginBtn("Log Out");
+            setDisable(true);
             return "admin_dashBoard?faces-redirect=true";
         } catch (NullPointerException e) {
             return "login?faces-redirect=true";

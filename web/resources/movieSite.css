@@ -134,13 +134,6 @@ body {
     top: 0;
     z-index: 1;
 }
-#navbar {
-    position: relative; 
-    margin: auto;
-    padding-left: 6em;
-    height: 4em;
-    background-color:  #636e72;
-}
 
 .dropbtn {
     color: #ffffff;
@@ -561,8 +554,7 @@ button:hover, .form-btn:hover {
 .col-12 {width: 100%;}
 
 [class*="col-"] {
-    float: left; 
-    border: 1px solid red;
+    float: left;  
 }
 .row::after {
     content: "";
